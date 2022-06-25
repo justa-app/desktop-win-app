@@ -1,0 +1,53 @@
+﻿using System;
+using System.Drawing;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Automation;
+using WindowsApplication.AutomationHandlers;
+using System.Threading;
+
+namespace WindowsApplication
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : System.Windows.Application
+    {
+        private NotifyIcon? trayIcon;
+
+        void Application_Startup(object sender, StartupEventArgs e)
+        {
+            trayIcon = new NotifyIcon()
+            {
+                Icon=SystemIcons.Application,
+                ContextMenuStrip = this.createMenu(),
+                Visible = true
+            };
+
+            MainWindow window = new MainWindow();
+            window.Show();
+        }
+
+        private ContextMenuStrip createMenu()
+        {
+            ContextMenuStrip Menu = new ContextMenuStrip();
+            ToolStripItem exitItem = new ToolStripMenuItem("Exit");
+            exitItem.Click += new EventHandler(CloseApplication);
+            Menu.Items.Add(exitItem);
+            return Menu;
+        }
+
+        private void CloseApplication(object? sender, EventArgs e)
+        {
+            this.Shutdown();
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            if (this.trayIcon != null)
+            {
+                this.trayIcon.Dispose();
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WindowsApplication.PresentationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindowsApplication"
+             mc:Ignorable="d" 
+             d:Background="White"
+             d:Visibility="Visible"
+             Width="300"
+             Height="150"
+             Name="presentationCont"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+            <Image Source="Assets/JustaFileIcon.png" MaxHeight="30" Margin="5"/>
+            <Label Padding="5" FontSize="14" Content="{Binding NumberOfSlides}"  ContentStringFormat="Justa found {0} pieces for you:"/>
+        </StackPanel>
+
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button MaxHeight="15" Grid.Column="0" HorizontalAlignment="Center" Command="{Binding DecreaseIndex}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Assets/arrowhead-left.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+            <!-- TODO Relative document and Presentation control are too cupled -->
+            <ContentControl x:Name="ViewedItem" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
+
+            <Button MaxHeight="15" Grid.Column="2" HorizontalAlignment="Center" Command="{Binding IncreaseIndex}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Assets/arrowhead-right.png" HorizontalAlignment="Center"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden">
+            <Image Source="Assets/JustaFileIcon.png"/>
+            <Label Content="Justa found"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
