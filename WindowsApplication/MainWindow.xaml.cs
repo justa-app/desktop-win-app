@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
 using WindowsApplication.ViewModules;
 
@@ -28,6 +29,8 @@ namespace WindowsApplication
     public partial class MainWindow : Window
     {
 
+        public ApiClient client = new ApiClient();
+
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
@@ -36,9 +39,11 @@ namespace WindowsApplication
         private const int WS_EX_APPWINDOW = 0x00040000, WS_EX_TOOLWINDOW = 0x00000080;
 
 
-        MainWindowViewModel _model = new MainWindowViewModel();
+        MainWindowViewModel _model;
+
         public MainWindow()
         {
+            _model = new MainWindowViewModel(this.TextCallback);
             InitializeComponent();
 
             DataContext = _model;
@@ -52,6 +57,11 @@ namespace WindowsApplication
                 DragMove();
             }
 
+        }
+
+        public void TextCallback(String text)
+        {
+            client.Update(text);
         }
 
         private void HideWindowFromAltTab()

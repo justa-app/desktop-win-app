@@ -9,5 +9,6 @@
              ShutdownMode="OnLastWindowClose">
     <Application.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+        
     </Application.Resources>
 </Application>

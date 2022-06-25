@@ -13,7 +13,6 @@ namespace WindowsApplication.ViewModules
 {
     public class MainWindowViewModel : ObservableObject
     {
-        //public VisibilityViewModel vis { get; private set; }
         private bool _hasOutlookFocusHandler;
         public bool HasOutlookFocusHandler
         {
@@ -37,9 +36,12 @@ namespace WindowsApplication.ViewModules
             }
         }
 
-        public MainWindowViewModel()
+        Action<String> _textAction;
+
+        public MainWindowViewModel(Action<String> TextAction)
         {
             OutlookFocusHandler = null;
+            _textAction = TextAction;
         }
 
         public void registerFocusChangeHandler()
@@ -78,7 +80,7 @@ namespace WindowsApplication.ViewModules
 
                 if (OutlookFocusHandler.IsFocused(sourceElement))
                 {
-                    OutlookFocusHandler focusHandler = new OutlookFocusHandler(sourceElement);
+                    OutlookFocusHandler focusHandler = new OutlookFocusHandler(sourceElement, _textAction);
                     if (OutlookFocusHandler != null) OutlookFocusHandler.OnLostFocus();
                     OutlookFocusHandler = focusHandler;
                     if (focusHandler != null) focusHandler.OnFocus();

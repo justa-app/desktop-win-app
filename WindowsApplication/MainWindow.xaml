@@ -20,8 +20,9 @@
     <Window.Visibility>
         <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" Mode="TwoWay"/>
     </Window.Visibility>
-    
-    <Grid PreviewMouseMove="Window_MouseMove">
-        <Image Source="Assets/JustaSleep.png" Width="50" Height="50"/>
-    </Grid>
+
+    <StackPanel PreviewMouseMove="Window_MouseMove">
+        <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Left"/>
+        <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right"/>
+    </StackPanel>
 </Window>

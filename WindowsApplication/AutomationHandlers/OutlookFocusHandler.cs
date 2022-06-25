@@ -36,8 +36,10 @@ namespace WindowsApplication.AutomationHandlers
                 el.Current.Name == OUTLOOK_MESSAGE_AUTOMATION_NAME);
         }
 
-        public OutlookFocusHandler(AutomationElement sourceElement)
+        Action<String> textAction;
+        public OutlookFocusHandler(AutomationElement sourceElement, Action<String> textAction)
         {
+            this.textAction = textAction;
             this.sourceElement = sourceElement;
         }
 
@@ -59,8 +61,7 @@ namespace WindowsApplication.AutomationHandlers
             if (automationElement.TryGetCurrentPattern(TextPattern.Pattern, out pattern))
             {
                 textPattern = pattern as TextPattern;
-
-                MessageBox.Show(textPattern.DocumentRange.GetText(1000), "title");
+                textAction(textPattern.DocumentRange.GetText(1000));
             }
         }
 

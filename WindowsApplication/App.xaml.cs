@@ -17,21 +17,25 @@ namespace WindowsApplication
 
         void Application_Startup(object sender, StartupEventArgs e)
         {
+            Window w = new Window1();
+            w.Show();
             trayIcon = new NotifyIcon()
             {
-                Icon=SystemIcons.Application,
+                Icon=new Icon("Assets/JustaSleep.ico"),
+                Text="Justa",
                 ContextMenuStrip = this.createMenu(),
                 Visible = true
             };
 
             MainWindow window = new MainWindow();
             window.Show();
+            
         }
 
         private ContextMenuStrip createMenu()
         {
             ContextMenuStrip Menu = new ContextMenuStrip();
-            ToolStripItem exitItem = new ToolStripMenuItem("Exit");
+            ToolStripItem exitItem = new ToolStripMenuItem("Exit Justa");
             exitItem.Click += new EventHandler(CloseApplication);
             Menu.Items.Add(exitItem);
             return Menu;
@@ -44,6 +48,12 @@ namespace WindowsApplication
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            // close all open windows and the tray Icon
+
+            foreach (Window i in this.Windows)
+            {
+                i.Close();
+            }
             if (this.trayIcon != null)
             {
                 this.trayIcon.Dispose();

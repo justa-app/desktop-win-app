@@ -1,0 +1,5 @@
+1. on click open the full window of the app
+2. Integrate the api into the text binding
+3. integrate api response into showing the "data available" icon
+4. don't allow to open if data is not available (for now)
+5. when open use data from response to generate things

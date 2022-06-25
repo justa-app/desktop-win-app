@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsApplication.Command;
 using WindowsApplication.ViewModules;
 
 namespace WindowsApplication
@@ -24,6 +25,7 @@ namespace WindowsApplication
     /// </summary>
     public partial class PresentationControl : UserControl
     {
+        // TODO move to a view model
         private int _index;
         public int Index {
             get => _index;
