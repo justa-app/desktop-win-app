@@ -17,8 +17,6 @@ namespace WindowsApplication
 
         void Application_Startup(object sender, StartupEventArgs e)
         {
-            Window w = new Window1();
-            w.Show();
             trayIcon = new NotifyIcon()
             {
                 Icon=new Icon("Assets/JustaSleep.ico"),
@@ -29,7 +27,6 @@ namespace WindowsApplication
 
             MainWindow window = new MainWindow();
             window.Show();
-            
         }
 
         private ContextMenuStrip createMenu()
