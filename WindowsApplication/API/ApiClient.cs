@@ -50,7 +50,7 @@ namespace WindowsApplication.API
             {
                 // Call asynchronous network methods in a try/catch block to handle exceptions.
                 HttpResponseMessage response = await client.PostAsync(
-                    "https://infra.askjusta.com/knowledge/",
+                    "http://infra.askjusta.com/knowledge/",
                     content: new StringContent(data)
                 );
                 response.EnsureSuccessStatusCode();
