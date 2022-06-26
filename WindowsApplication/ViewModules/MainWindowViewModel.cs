@@ -6,13 +6,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Automation;
+using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
+using WindowsApplication.DataObjects;
 using WindowsApplication.Utilities;
 
 namespace WindowsApplication.ViewModules
 {
     public class MainWindowViewModel : ObservableObject
     {
+        public ApiClient client { get; set; }
         private bool _hasOutlookFocusHandler;
         public bool HasOutlookFocusHandler
         {
@@ -20,7 +23,18 @@ namespace WindowsApplication.ViewModules
             set
             {
                 this._hasOutlookFocusHandler = value;
-                onPropertyChanged("HasOutlookFocusHandler");
+                OnPropertyChanged("HasOutlookFocusHandler");
+            }
+        }
+
+        private int _index;
+        public int Index
+        {
+            get => _index;
+            set
+            {
+                this._index = value;
+                OnPropertyChanged("Index");
             }
         }
 
@@ -31,17 +45,18 @@ namespace WindowsApplication.ViewModules
         private OutlookFocusHandler? _outlookFocusHandler;
         public OutlookFocusHandler? OutlookFocusHandler { get => _outlookFocusHandler; private set {
                 _outlookFocusHandler = value;
-                onPropertyChanged("OutlookFocusHandler");
+                OnPropertyChanged("OutlookFocusHandler");
                 HasOutlookFocusHandler = value != null;
             }
         }
 
-        Action<String> _textAction;
+        Action<string> _textAction;
 
-        public MainWindowViewModel(Action<String> TextAction)
+        public MainWindowViewModel()
         {
+            this.client = new ApiClient();
+            this._textAction = client.Update;
             OutlookFocusHandler = null;
-            _textAction = TextAction;
         }
 
         public void registerFocusChangeHandler()

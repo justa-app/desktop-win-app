@@ -26,6 +26,7 @@ namespace WindowsApplication
             };
 
             MainWindow window = new MainWindow();
+            window.Visibility = Visibility.Hidden;
             window.Show();
         }
 

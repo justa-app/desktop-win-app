@@ -25,7 +25,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
             <Image Source="Assets/JustaFileIcon.png" MaxHeight="30" Margin="5"/>
-            <Label Padding="5" FontSize="14" Content="{Binding NumberOfSlides}"  ContentStringFormat="Justa found {0} pieces for you:"/>
+            <!-- Slides, Converter={StaticResource ArrayToLength}, Mode=TwoWay -->
+            <Label Padding="5" FontSize="14" Content="{Binding Size}"  ContentStringFormat="Justa found {0} pieces for you:"/>
         </StackPanel>
 
 
@@ -39,7 +40,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button MaxHeight="15" Grid.Column="0" HorizontalAlignment="Center" Command="{Binding DecreaseIndex}">
+            <Button MaxHeight="15" Grid.Column="0" HorizontalAlignment="Center" PreviewMouseDoubleClick="DecreaseIndexClick">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="Assets/arrowhead-left.png"/>
@@ -48,9 +49,11 @@
             </Button>
             
             <!-- TODO Relative document and Presentation control are too cupled -->
-            <ContentControl x:Name="ViewedItem" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
+            <ContentControl Content="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100">
+            </ContentControl>
 
-            <Button MaxHeight="15" Grid.Column="2" HorizontalAlignment="Center" Command="{Binding IncreaseIndex}">
+            <Button MaxHeight="15" Grid.Column="2" HorizontalAlignment="Center" PreviewMouseDoubleClick="IncreaseIndexClick">
+                <!-- Command="{Binding IncreaseIndex}-->
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="Assets/arrowhead-right.png" HorizontalAlignment="Center"/>

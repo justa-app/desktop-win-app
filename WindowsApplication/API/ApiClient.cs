@@ -16,26 +16,33 @@ namespace WindowsApplication.API
     // TODO the http client is too coupled with the interface.
     public class ApiClient : ObservableObject
     {
-        private RelevantDocumentData[]? _lastResponse = null;
-        public RelevantDocumentData[]? LastUpdatedResponse
+        private RelevantDocumentData[] _lastResponse;
+        public RelevantDocumentData[] LastUpdatedResponse
         {
+            //get => _lastResponse;
             get => _lastResponse;
             private set {
                 if (_lastResponse == value) return;
                 _lastResponse = value;
-                onPropertyChanged("LastUpdatedResponse");
+                OnPropertyChanged("LastUpdatedResponse");
+
             }
         }
         private DateTime _lastUpdateTime;
         
         static readonly HttpClient client = new HttpClient();
 
+        public ApiClient()
+        {
+            this.LastUpdatedResponse = new RelevantDocumentData[0];
+        }
+
         public void Update(string data)
         {
             DateTime CurrentUpdateTime = DateTime.Now;
             this._checkRelevantDocuments(data).ContinueWith(r =>
             {
-                if (r != null && _lastUpdateTime < CurrentUpdateTime)
+                if (r.Result != null && _lastUpdateTime < CurrentUpdateTime)
                 {
                     _lastUpdateTime = CurrentUpdateTime;
                     LastUpdatedResponse = r.Result;

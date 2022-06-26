@@ -12,7 +12,7 @@ namespace WindowsApplication.Utilities
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void onPropertyChanged(string name)
+        protected void OnPropertyChanged(string name)
         {
             if(PropertyChanged != null)
             {

@@ -28,9 +28,6 @@ namespace WindowsApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public ApiClient client = new ApiClient();
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
@@ -43,9 +40,9 @@ namespace WindowsApplication
 
         public MainWindow()
         {
-            _model = new MainWindowViewModel(this.TextCallback);
             InitializeComponent();
-
+            
+            _model = new MainWindowViewModel();
             DataContext = _model;
             new Thread(_model.registerFocusChangeHandler).Start();
         }
@@ -59,10 +56,7 @@ namespace WindowsApplication
 
         }
 
-        public void TextCallback(String text)
-        {
-            client.Update(text);
-        }
+        
 
         private void HideWindowFromAltTab()
         {
@@ -76,6 +70,16 @@ namespace WindowsApplication
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             HideWindowFromAltTab();
+        }
+
+        private void PresentationControl_IncreaseIndex(object sender, RoutedEventArgs e)
+        {
+            _model.Index++;
+        }
+
+        private void PresentationControl_DecreaseIndex(object sender, RoutedEventArgs e)
+        {
+            _model.Index--;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

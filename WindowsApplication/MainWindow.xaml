@@ -4,25 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsApplication"
+        xmlns:views="clr-namespace:WindowsApplication.ViewModules"
         mc:Ignorable="d"
         Title="MainWindow"
         Topmost="True"
-        Focusable="False"
-        d:Visibility="Visible"
-        ShowInTaskbar="False"
-        SizeToContent="WidthAndHeight"    
+        Focusable="True"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
+        d:Visibility="Visible"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"    
         Loaded="Window_Loaded"
+        Name="Main"
         Closing="Window_Closing">
-    
+
     <Window.Visibility>
         <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" Mode="TwoWay"/>
     </Window.Visibility>
 
     <StackPanel PreviewMouseMove="Window_MouseMove">
-        <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Left"/>
-        <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right"/>
+        
+        <StackPanel Visibility="Visible">
+            <Border
+            CornerRadius="24,24,0,0"
+            Background="#D9D9D9"
+            Padding="0,0,0,10"
+            >
+               
+                <local:PresentationControl 
+                    Size="{Binding Path=DataContext.client.LastUpdatedResponse, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource ArrayToLength}, Mode=OneWay}"
+                    IncreaseIndex="PresentationControl_IncreaseIndex"
+                    DecreaseIndex="PresentationControl_DecreaseIndex"
+                    >
+                    <local:PresentationControl.Item>
+                        <MultiBinding Converter="{StaticResource ArrayToIndex}">
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.client.LastUpdatedResponse"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.Index"/>
+                        </MultiBinding>
+                    </local:PresentationControl.Item>
+                </local:PresentationControl>
+            </Border>
+
+            <local:ExpertContent/>
+        </StackPanel>
+        
+        <!--<local:JustaPopup  Documents="{Binding Path=DataContext.client.LastUpdatedResponse, ElementName=Main}" />-->
+        <Button>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </StackPanel>
 </Window>

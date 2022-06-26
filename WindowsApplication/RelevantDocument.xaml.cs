@@ -24,70 +24,37 @@ namespace WindowsApplication
     /// </summary>
     public partial class RelevantDocument : UserControl
     {
+        public string title { get; set; }
+        public string created_by { get; set; }
+        public string type { get; set; }
+        public string url { get; set; }
 
+        public static readonly RoutedEvent AddClickEvent = EventManager.RegisterRoutedEvent(
+            "AddClick",
+            RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler),
+            typeof(RelevantDocument)
+        );
 
-        public string Title
+        public event RoutedEventHandler AddClick
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            add { AddHandler(AddClickEvent, value); }
+            remove { RemoveHandler(AddClickEvent, value); }
         }
-
-        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(RelevantDocument), new PropertyMetadata(string.Empty));
-
-
-
-
-        public string Description
-        {
-            get { return (string)GetValue(DescriptionProperty); }
-            set { SetValue(DescriptionProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Description.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(RelevantDocument), new PropertyMetadata(String.Empty));
-
-
-
-
-        public string Url
-        {
-            get { return (string)GetValue(UrlProperty); }
-            set { SetValue(UrlProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Url.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty UrlProperty =
-            DependencyProperty.Register("Url", typeof(string), typeof(RelevantDocument), new PropertyMetadata(string.Empty));
-
-
-        public RelevantDocument()
+        
+        public RelevantDocument(string title, string created_by, string type, string url)
         {
             InitializeComponent();
-        }
+            this.title = title;
+            this.created_by = created_by;
+            this.type = type;
+            this.url = url;
 
-        public RelevantDocument(String Title, String Description, String Url)
-        {
-            InitializeComponent();
-            this.Title = Title;
-            this.Description = Description;
-            this.Url = Url;
-
-        }
-
-        private string GetDefaultBrowserPath()
-        {
-            string key = @"htmlfile\shell\open\command";
-            RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(key, false);
-            // get default browser path
-            return ((string)registryKey.GetValue(null, null)).Split('"')[1];
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(GetDefaultBrowserPath(), this.Url);
+            RaiseEvent(new RoutedEventArgs(AddClickEvent));
         }
     }
 }

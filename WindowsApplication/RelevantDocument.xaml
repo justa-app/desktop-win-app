@@ -21,14 +21,14 @@
         </Grid.ColumnDefinitions>
         <Image Source="Assets/SharePoint_logo.png" MaxHeight="40" HorizontalAlignment="Left" Grid.Column="0"/>
         <StackPanel HorizontalAlignment="Left" Grid.Column="1">
-            <Button Click="Button_Click" HorizontalAlignment="Center">
+            <Button x:Name="EnterUrl" HorizontalAlignment="Center" PreviewMouseDoubleClick="Button_Click">
                 <Button.Template>
                     <ControlTemplate>
-                        <Label Content="{Binding Title, ElementName=root}"/>
+                        <Label Content="{Binding title, ElementName=root}"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Label Content="{Binding Description, ElementName=root}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding created_by, ElementName=root}" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>
