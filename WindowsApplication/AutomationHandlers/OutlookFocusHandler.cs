@@ -12,8 +12,8 @@ namespace WindowsApplication.AutomationHandlers
     public class OutlookFocusHandler
     {
         readonly static string OUTLOOK_PROCESS_NAME = "OUTLOOK";
-        readonly static string OUTLOOK_MESSAGE_AUTOMATION_ID = "4159";
         readonly static string OUTLOOK_MESSAGE_AUTOMATION_NAME = "Message";
+        readonly static string OUTLOOK_MESSAGE_AUTOMATION_ID = "Untitled Message";
 
         public AutomationElement sourceElement { get; private set; }
 
@@ -31,13 +31,14 @@ namespace WindowsApplication.AutomationHandlers
             if (el == null) return false;
             el = tree.GetParent(el);
             return (
+                sourceElement != null &&
+                sourceElement.Current.Name == OUTLOOK_MESSAGE_AUTOMATION_ID) || (
                 el != null &&
-                el.Current.AutomationId == OUTLOOK_MESSAGE_AUTOMATION_ID &&
-                el.Current.Name == OUTLOOK_MESSAGE_AUTOMATION_NAME);
+                el.Current.Name == OUTLOOK_MESSAGE_AUTOMATION_ID);
         }
 
-        Action<String> textAction;
-        public OutlookFocusHandler(AutomationElement sourceElement, Action<String> textAction)
+        Action<string> textAction;
+        public OutlookFocusHandler(AutomationElement sourceElement, Action<string> textAction)
         {
             this.textAction = textAction;
             this.sourceElement = sourceElement;

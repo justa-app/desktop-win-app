@@ -22,7 +22,7 @@
                 >
 
             <StackPanel Orientation="Horizontal">
-                <Image Source="Assets/person-icon-expert.png" VerticalAlignment="Center" Height="35" Width="35"/>
+                <Image Source="pack://application:,,,/Assets/person-icon-expert.png" VerticalAlignment="Center" Height="35" Width="35"/>
                 <Label Content="There's an expert online!"
                        Padding="10,0,10,0"
                        FontFamily="Roboto"

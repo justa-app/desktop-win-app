@@ -25,7 +25,7 @@
 
     <StackPanel PreviewMouseMove="Window_MouseMove">
         
-        <StackPanel Visibility="Visible">
+        <StackPanel x:Name="JustaPopup" Visibility="Hidden">
             <Border
             CornerRadius="24,24,0,0"
             Background="#D9D9D9"
@@ -46,14 +46,13 @@
                 </local:PresentationControl>
             </Border>
 
-            <local:ExpertContent/>
+             <local:ExpertContent/>
         </StackPanel>
         
-        <!--<local:JustaPopup  Documents="{Binding Path=DataContext.client.LastUpdatedResponse, ElementName=Main}" />-->
-        <Button>
+        <Button PreviewMouseLeftButtonUp="Button_Click" x:Name="ImageIco">
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right"/>
+                    <Image Source="pack://application:,,,/Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right" />
                 </ControlTemplate>
             </Button.Template>
         </Button>

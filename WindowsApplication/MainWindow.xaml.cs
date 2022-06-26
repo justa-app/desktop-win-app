@@ -41,7 +41,6 @@ namespace WindowsApplication
         public MainWindow()
         {
             InitializeComponent();
-            
             _model = new MainWindowViewModel();
             DataContext = _model;
             new Thread(_model.registerFocusChangeHandler).Start();
@@ -74,12 +73,24 @@ namespace WindowsApplication
 
         private void PresentationControl_IncreaseIndex(object sender, RoutedEventArgs e)
         {
-            _model.Index++;
+            if (_model.client.LastUpdatedResponse.Length > _model.Index+1){
+                _model.Index++;
+            }
+            
         }
-
         private void PresentationControl_DecreaseIndex(object sender, RoutedEventArgs e)
         {
-            _model.Index--;
+            if (0 <= _model.Index - 1)
+            {
+                _model.Index--;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.JustaPopup.Visibility = this.JustaPopup.Visibility == Visibility.Visible ?
+                Visibility.Hidden:
+                Visibility.Visible;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
