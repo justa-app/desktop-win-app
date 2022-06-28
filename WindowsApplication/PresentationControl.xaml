@@ -14,29 +14,26 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
-
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-            <Image Source="pack://application:,,,/Assets/JustaFileIcon.png" MaxHeight="30" Margin="5"/>
-            <!-- Slides, Converter={StaticResource ArrayToLength}, Mode=TwoWay -->
-            <Label Padding="5" FontSize="14" Content="{Binding Size}"  ContentStringFormat="Justa found {0} pieces for you:"/>
+        <StackPanel
+            Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+            Margin="10,0,0,0">
+            <Image Source="pack://application:,,,/Assets/JustaFileIcon.png" MaxHeight="30"/>
+            <Label FontFamily="Roberto"
+                FontSize="14" Content="{Binding Size}"  ContentStringFormat="Justa found {0} pieces for you:"
+                   Foreground="#4D4C4C"
+                   d:Content="Justa found 15 files for you:"
+                   VerticalAlignment="Center"/>
         </StackPanel>
 
 
         <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
@@ -47,10 +44,10 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
+
             <!-- TODO Relative document and Presentation control are too cupled -->
-            <ContentControl Content="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100">
-            </ContentControl>
+            <ContentControl Content="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
+
 
             <Button MaxHeight="15" Grid.Column="2" HorizontalAlignment="Center" PreviewMouseLeftButtonUp="IncreaseIndexClick">
                 <!-- Command="{Binding IncreaseIndex}-->
@@ -61,11 +58,5 @@
                 </Button.Template>
             </Button>
         </Grid>
-
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden">
-            <Image Source="Assets/JustaFileIcon.png"/>
-            <Label Content="Justa found"/>
-        </StackPanel>
     </Grid>
 </UserControl>

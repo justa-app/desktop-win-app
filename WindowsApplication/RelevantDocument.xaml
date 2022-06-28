@@ -5,29 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WindowsApplication"
              mc:Ignorable="d" 
-             x:Name="root"
-             Height="80"
+             Height="100"
              Width="300"
              d:Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="200">
 
-    <Grid HorizontalAlignment="Left">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Label Content="{Binding title}" d:Content="Title" 
+               FontFamily="Roberto"
+               FontWeight="Medium"
+                FontSize="16"
+               MouseLeftButtonUp="Label_MouseDoubleClick"/>
+        <Rectangle VerticalAlignment="Stretch" Margin="2" Stroke="#4676EB" />
 
-        <Image Source="pack://application:,,,/Assets/SharePoint_logo.png" MaxHeight="40" HorizontalAlignment="Left" Grid.Column="0"/>
-        <StackPanel HorizontalAlignment="Left" Grid.Column="1">
-            <Button x:Name="EnterUrl" HorizontalAlignment="Center" PreviewMouseLeftButtonUp="Button_Click">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Label Content="{Binding title, ElementName=root}"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <!-- <Label Content="{Binding created_by, ElementName=root}" HorizontalAlignment="Center"/> -->
-            <Label Content="{Binding type}" HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Assets/SharePoint_logo.png" MaxHeight="40" HorizontalAlignment="Left"/>
+            <TextBlock Margin="15,10,0,0" Foreground="#424242" FontFamily="Roberto">
+                <TextBlock.Inlines>
+                    <Run Text="{Binding type}" d:Text="type" FontWeight="DemiBold"/>
+                    <Run Text="|"/>
+                    <Run Text="{Binding created_by}" d:Text="created-by"/>
+                </TextBlock.Inlines>
+            </TextBlock>
+            
         </StackPanel>
-    </Grid>
+    </StackPanel>
+    <!--
+        
+        <Button x:Name="EnterUrl" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center" PreviewMouseLeftButtonUp="Button_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel>
+                        <Label Padding="0,13,0,0" Content="{Binding title, ElementName=root}" d:Content="Title"/>
+                        <Rectangle VerticalAlignment="Stretch" Margin="2" Stroke="#4676EB" />
+                        <Label Content="{Binding type}" d:Content="type" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+ -->
 </UserControl>

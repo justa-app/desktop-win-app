@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WindowsApplication.Utilities;
 
 namespace WindowsApplication.DataObjects
 {
-    public class RelevantDocumentData
+    public class RelevantDocumentData : ObservableObject
     {
         public string title { get; set; }
         public string created_by { get; set; }

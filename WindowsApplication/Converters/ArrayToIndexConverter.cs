@@ -20,10 +20,11 @@ namespace WindowsApplication.Converters
             if(arr.Length > index)
             {
                 RelevantDocumentData data = arr[index] as RelevantDocumentData;
-                RelevantDocument d = new RelevantDocument(data.title, data.created_by, data.type, data.url);
+                RelevantDocument d = new RelevantDocument();
+                d.DataContext = data;
                 d.AddClick += data.GetDefaultBrowserPath;
                 return d;
-            } else
+            } else 
             {
                 return null;
             }

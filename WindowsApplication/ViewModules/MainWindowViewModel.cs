@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Automation;
+using System.Windows.Media.Imaging;
 using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
 using WindowsApplication.DataObjects;
@@ -38,6 +39,18 @@ namespace WindowsApplication.ViewModules
             }
         }
 
+        private bool _NewData;
+        public bool NewData
+        {
+            get => _NewData;
+            set
+            {
+                this._NewData = value;
+                OnPropertyChanged("NewData");
+            }
+        }
+
+
         AutomationFocusChangedEventHandler? focusHandler;
 
         // the focus handler should be a class that is initialized and set to the last focused one
@@ -57,6 +70,17 @@ namespace WindowsApplication.ViewModules
             this.client = new ApiClient();
             this._textAction = client.Update;
             OutlookFocusHandler = null;
+            this.client.PropertyChanged += Client_PropertyChanged;
+            this.NewData = false;
+        }
+
+        private void Client_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "LastUpdatedResponse")
+            {
+                Index = 0;
+                NewData = client.LastUpdatedResponse.Length != 0;
+            }
         }
 
         public void registerFocusChangeHandler()

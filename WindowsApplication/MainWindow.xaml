@@ -12,7 +12,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
-        d:Visibility="Visible"
+        d:Visibility="Hidden"
         ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"    
         Loaded="Window_Loaded"
@@ -23,13 +23,13 @@
         <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" Mode="TwoWay"/>
     </Window.Visibility>
 
-    <StackPanel PreviewMouseMove="Window_MouseMove">
+    <StackPanel>
         
-        <StackPanel x:Name="JustaPopup" Visibility="Hidden">
+        <StackPanel x:Name="JustaPopup" Visibility="Hidden" Margin="0,0,20,5">
             <Border
             CornerRadius="24,24,0,0"
             Background="#D9D9D9"
-            Padding="0,0,0,10"
+            Padding="0,0,0,0"
             >
                
                 <local:PresentationControl 
@@ -38,6 +38,7 @@
                     DecreaseIndex="PresentationControl_DecreaseIndex"
                     >
                     <local:PresentationControl.Item>
+                        <!-- TODO can be a regular converter -->
                         <MultiBinding Converter="{StaticResource ArrayToIndex}">
                             <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.client.LastUpdatedResponse"/>
                             <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.Index"/>
@@ -48,13 +49,14 @@
 
              <local:ExpertContent/>
         </StackPanel>
-        
-        <Button PreviewMouseLeftButtonUp="Button_Click" x:Name="ImageIco">
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Source="pack://application:,,,/Assets/JustaSleep.png" Width="50" Height="50" HorizontalAlignment="Right" />
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+
+        <Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
+               Width="50" Height="50" HorizontalAlignment="Right"
+               PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
+                PreviewMouseMove="Icon_MouseMove"
+                PreviewMouseLeftButtonUp="Icon_MouseLeftButtonUp"
+               x:Name="img"
+               >
+        </Image>
     </StackPanel>
 </Window>

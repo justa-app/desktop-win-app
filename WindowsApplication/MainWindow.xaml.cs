@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -19,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
+using WindowsApplication.Utilities;
 using WindowsApplication.ViewModules;
 
 namespace WindowsApplication
@@ -45,17 +47,6 @@ namespace WindowsApplication
             DataContext = _model;
             new Thread(_model.registerFocusChangeHandler).Start();
         }
-
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-
-        }
-
-        
 
         private void HideWindowFromAltTab()
         {
@@ -86,11 +77,12 @@ namespace WindowsApplication
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             this.JustaPopup.Visibility = this.JustaPopup.Visibility == Visibility.Visible ?
-                Visibility.Hidden:
-                Visibility.Visible;
+                    Visibility.Hidden :
+                    Visibility.Visible;
+            _model.NewData = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -98,5 +90,33 @@ namespace WindowsApplication
             new Thread(_model.unregisterFocusChangeHandler).Start();
         }
 
+        Point _startPoint;
+        void Icon_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        void Icon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _startPoint = e.GetPosition(null);
+        }
+
+        void Icon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Point position = e.GetPosition(null);
+            if (Math.Abs(position.X - _startPoint.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                        Math.Abs(position.Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)
+            {
+                e.Handled = true;
+                // TODO set a normal horizontal/vertical drag size
+            } else
+            {
+                // TODO this should not be here, it should be at it's own mouseup handle.
+                Image_MouseLeftButtonUp(sender, e);
+            }
+        }
     }
 }

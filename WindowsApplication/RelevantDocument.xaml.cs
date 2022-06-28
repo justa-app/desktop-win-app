@@ -24,12 +24,7 @@ namespace WindowsApplication
     /// </summary>
     public partial class RelevantDocument : UserControl
     {
-        public string title { get; set; }
-        public string created_by { get; set; }
-        public string type { get; set; }
-        public string url { get; set; }
-
-        public static readonly RoutedEvent AddClickEvent = EventManager.RegisterRoutedEvent(
+       public static readonly RoutedEvent AddClickEvent = EventManager.RegisterRoutedEvent(
             "AddClick",
             RoutingStrategy.Bubble,
             typeof(RoutedEventHandler),
@@ -42,17 +37,12 @@ namespace WindowsApplication
             remove { RemoveHandler(AddClickEvent, value); }
         }
         
-        public RelevantDocument(string title, string created_by, string type, string url)
+        public RelevantDocument()
         {
             InitializeComponent();
-            this.title = title;
-            this.created_by = created_by;
-            this.type = type;
-            this.url = url;
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Label_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(AddClickEvent));
         }

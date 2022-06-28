@@ -13,6 +13,7 @@ using WindowsApplication.DataObjects;
 
 namespace WindowsApplication.API
 {
+    // TODO use this on a seperate thread, or send only if finished typing, it takes a long time for response
     // TODO the http client is too coupled with the interface.
     public class ApiClient : ObservableObject
     {
