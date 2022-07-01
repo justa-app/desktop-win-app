@@ -31,10 +31,20 @@ namespace WindowsApplication.API
         }
         private DateTime _lastUpdateTime;
         
-        static readonly HttpClient client = new HttpClient();
 
+        public static HttpClient client { get; private set; }
         public ApiClient()
         {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.MaxAutomaticRedirections = 3;
+            handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+            handler.ServerCertificateCustomValidationCallback =
+                (httpRequestMessage, cert, cetChain, policyErrors) =>
+                {
+                    return true;
+                };
+            client = new HttpClient(handler);
+
             this.LastUpdatedResponse = new RelevantDocumentData[0];
         }
 
@@ -58,8 +68,9 @@ namespace WindowsApplication.API
             {
                 // Call asynchronous network methods in a try/catch block to handle exceptions.
                 HttpResponseMessage response = await client.PostAsync(
-                    "http://infra.askjusta.com/knowledge/",
+                    "https://infra.askjusta.com/knowledge/",
                     content: new StringContent(data)
+                    
                 );
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
