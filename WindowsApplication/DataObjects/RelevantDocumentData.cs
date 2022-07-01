@@ -32,10 +32,9 @@ namespace WindowsApplication.DataObjects
 
         public void GetDefaultBrowserPath(object sender, RoutedEventArgs e)
         {
-            string key = @"htmlfile\shell\open\command";
-            RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(key, false);
-            // get default browser path
-            Process.Start(((string)registryKey.GetValue(null, null)).Split('"')[1], this.url);
+            ProcessStartInfo info = new ProcessStartInfo(url);
+            info.UseShellExecute = true;
+            Process.Start(info);
         }
     }
 }
