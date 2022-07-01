@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 using WindowsApplication.Utilities;
 
-using WindowsApplication.DataObjects;
+using WindowsApplication.ViewModules;
 
 namespace WindowsApplication.API
 {
@@ -17,8 +17,8 @@ namespace WindowsApplication.API
     // TODO the http client is too coupled with the interface.
     public class ApiClient : ObservableObject
     {
-        private RelevantDocumentData[] _lastResponse;
-        public RelevantDocumentData[] LastUpdatedResponse
+        private RelevantDocumentViewModel[] _lastResponse;
+        public RelevantDocumentViewModel[] LastUpdatedResponse
         {
             //get => _lastResponse;
             get => _lastResponse;
@@ -45,7 +45,7 @@ namespace WindowsApplication.API
                 };
             client = new HttpClient(handler);
 
-            this.LastUpdatedResponse = new RelevantDocumentData[0];
+            this.LastUpdatedResponse = new RelevantDocumentViewModel[0];
         }
 
         public void Update(string data)
@@ -62,7 +62,7 @@ namespace WindowsApplication.API
             );
         }
 
-        private async Task<RelevantDocumentData[]?> _checkRelevantDocuments(string data)
+        private async Task<RelevantDocumentViewModel[]?> _checkRelevantDocuments(string data)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace WindowsApplication.API
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                RelevantDocumentData[]? responseData = JsonSerializer.Deserialize<RelevantDocumentData[]>(responseBody);
+                RelevantDocumentViewModel[]? responseData = JsonSerializer.Deserialize<RelevantDocumentViewModel[]>(responseBody);
                 return responseData;
             } catch (HttpRequestException ex)
             {

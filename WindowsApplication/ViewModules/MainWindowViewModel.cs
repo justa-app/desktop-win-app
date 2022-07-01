@@ -9,7 +9,6 @@ using System.Windows.Automation;
 using System.Windows.Media.Imaging;
 using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
-using WindowsApplication.DataObjects;
 using WindowsApplication.Utilities;
 
 namespace WindowsApplication.ViewModules

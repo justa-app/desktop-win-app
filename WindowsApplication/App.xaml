@@ -12,5 +12,6 @@
         <converters:ArrayToIndexConverter x:Key="ArrayToIndex"/>
         <converters:ArrayToLengthConverter x:Key="ArrayToLength"/>
         <converters:ResponseToAlertConverter x:Key="ReponseToAlert"/>
+
     </Application.Resources>
 </Application>

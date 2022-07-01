@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:WindowsApplication.ViewModules"
+             xmlns:views="clr-namespace:WindowsApplication.Views"
              xmlns:local="clr-namespace:WindowsApplication"
              mc:Ignorable="d" 
              d:Background="White"
@@ -12,6 +14,11 @@
              Name="presentationCont"
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:RelevantDocumentViewModel}">
+            <views:RelevantDocumentView DataContext="{Binding }"/>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -46,7 +53,7 @@
             </Button>
 
             <!-- TODO Relative document and Presentation control are too cupled -->
-            <ContentControl Content="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
+            <ContentControl Content="{Binding }" DataContext="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
 
 
             <Button MaxHeight="15" Grid.Column="2" HorizontalAlignment="Center" PreviewMouseLeftButtonUp="IncreaseIndexClick">
