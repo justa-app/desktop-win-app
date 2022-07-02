@@ -1,0 +1,90 @@
+﻿<Page x:Class="WindowsApplication.Views.StartChatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WindowsApplication.Views"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      mc:Ignorable="d" 
+      d:Background="#4676EB"
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="StartChatPage">
+
+    <Page.Resources>
+        <Style x:Key="headers" TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" Value="Roboto"/>
+            <Setter Property="FontWeight" Value="400"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Command="{x:Static NavigationCommands.BrowseBack}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="pack://application:,,,/Assets/expert.png" MaxHeight="20" Grid.Column="0" Grid.Row="0"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        
+        <DockPanel Grid.Row="0" Grid.Column="1">
+            <Label Content="Start your session" FontSize="24" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource headers}"/>
+            <Image Source="pack://application:,,,/Assets/back-arrow.png" MaxHeight="20" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+        </DockPanel>
+        
+        
+
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center">
+            
+            <Label Content="Please type your question"
+                   HorizontalAlignment="Left"/>
+            <TextBox
+                TextWrapping="Wrap"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Hidden"
+                Background="White"
+                HorizontalAlignment="Stretch"
+                FontSize="14"
+                Height="100">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label FontSize="14" Content="Hi, I am looking for information on..." Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </StackPanel>
+        
+
+        <Image gif:ImageBehavior.RepeatBehavior="3x"
+               gif:ImageBehavior.AnimatedSource="pack://application:,,,/Assets/bubble-chat.gif"
+               Margin="0,5,0,20"/>
+    </Grid>
+</Page>

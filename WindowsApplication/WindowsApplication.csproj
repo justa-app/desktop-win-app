@@ -17,6 +17,8 @@
     <None Remove="Assets\arrowhead-left.png" />
     <None Remove="Assets\arrowhead-right.png" />
     <None Remove="Assets\arrowhead-thin-outline-to-the-right.png" />
+    <None Remove="Assets\bubble-chat.gif" />
+    <None Remove="Assets\expert.png" />
     <None Remove="Assets\JustaFileIcon.png" />
     <None Remove="Assets\JustaNotified.png" />
     <None Remove="Assets\JustaSleep.ico" />
@@ -44,6 +46,12 @@
     <Resource Include="Assets\arrowhead-right.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\bubble-chat.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\expert.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\JustaFileIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -53,6 +61,7 @@
     <Content Include="Assets\JustaSleep.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
     <Resource Include="Assets\JustaSleep.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
