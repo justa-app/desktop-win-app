@@ -22,6 +22,7 @@ using WindowsApplication.API;
 using WindowsApplication.AutomationHandlers;
 using WindowsApplication.Utilities;
 using WindowsApplication.ViewModules;
+using WindowsApplication.Views;
 
 namespace WindowsApplication
 {
@@ -45,7 +46,25 @@ namespace WindowsApplication
             InitializeComponent();
             _model = new MainWindowViewModel();
             DataContext = _model;
+            //this.SizeChanged += ChangeSideToLeft;
+            //_mainFrame.NavigationService.Navigate(new MainPage(_model));
+            _mainFrame.NavigationService.Navigate(new StartChatPage());
+
+            // TODO improve the size Changed
+            SizeChanged += MainWindow_SizeChanged;
+
+            Top = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Bottom - 200;
+            Left = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Right - 200;
+            
+
             new Thread(_model.registerFocusChangeHandler).Start();
+            
+        }
+
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Left -= (e.NewSize.Width - e.PreviousSize.Width);
+            Top -= (e.NewSize.Height - e.PreviousSize.Height);
         }
 
         private void HideWindowFromAltTab()
@@ -62,26 +81,9 @@ namespace WindowsApplication
             HideWindowFromAltTab();
         }
 
-        private void PresentationControl_IncreaseIndex(object sender, RoutedEventArgs e)
-        {
-            if (_model.client.LastUpdatedResponse.Length > _model.Index+1){
-                _model.Index++;
-            }
-            
-        }
-        private void PresentationControl_DecreaseIndex(object sender, RoutedEventArgs e)
-        {
-            if (0 <= _model.Index - 1)
-            {
-                _model.Index--;
-            }
-        }
-
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            this.JustaPopup.Visibility = this.JustaPopup.Visibility == Visibility.Visible ?
-                    Visibility.Hidden :
-                    Visibility.Visible;
+            _model.ShowContent = !_model.ShowContent;
             _model.NewData = false;
         }
 

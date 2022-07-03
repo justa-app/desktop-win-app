@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        
+        <!-- TODO this should be a service, and not something in the datacontext -->
         <Button Command="{Binding OpenBrowserCommand}">
             <!-- Command="{Binding IncreaseIndex}-->
             <Button.Template>

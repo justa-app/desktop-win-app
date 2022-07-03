@@ -6,10 +6,18 @@
       xmlns:local="clr-namespace:WindowsApplication.Views"
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       mc:Ignorable="d" 
-      d:Background="#4676EB"
+      Background="#4676EB"
+      Width="200"
+      Height="200"
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="StartChatPage">
+      Title="StartChatPa">
 
+    <!--
+    <StackPanel>
+        <Label Content="Hello" Foreground="Yellow"/>    
+    </StackPanel>-->
+    
+    
     <Page.Resources>
         <Style x:Key="headers" TargetType="{x:Type Label}">
             <Setter Property="FontFamily" Value="Roboto"/>
@@ -17,7 +25,7 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -35,18 +43,18 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        
+
         <DockPanel Grid.Row="0" Grid.Column="1">
             <Label Content="Start your session" FontSize="24" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource headers}"/>
             <Image Source="pack://application:,,,/Assets/back-arrow.png" MaxHeight="20" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
         </DockPanel>
-        
-        
+
+
 
         <StackPanel Grid.Row="1" Grid.Column="1"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center">
-            
+
             <Label Content="Please type your question"
                    HorizontalAlignment="Left"/>
             <TextBox
@@ -81,7 +89,7 @@
                 </TextBox.Style>
             </TextBox>
         </StackPanel>
-        
+
 
         <Image gif:ImageBehavior.RepeatBehavior="3x"
                gif:ImageBehavior.AnimatedSource="pack://application:,,,/Assets/bubble-chat.gif"

@@ -19,35 +19,51 @@
         Closing="Window_Closing">
 
     <Window.Visibility>
-        <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" Mode="TwoWay"/>
+        <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" ConverterParameter="{x:Static Visibility.Collapsed}" Mode="TwoWay"/>
     </Window.Visibility>
 
-    <StackPanel>
-        
-        <StackPanel x:Name="JustaPopup" Visibility="Hidden" Margin="0,0,20,5">
-            <Border
-            CornerRadius="24,24,0,0"
-            Background="#D9D9D9"
-            Padding="0,0,0,0"
-            >
-               
-                <local:PresentationControl 
-                    Size="{Binding Path=DataContext.client.LastUpdatedResponse, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource ArrayToLength}, Mode=OneWay}"
-                    IncreaseIndex="PresentationControl_IncreaseIndex"
-                    DecreaseIndex="PresentationControl_DecreaseIndex"
-                    >
-                    <local:PresentationControl.Item>
-                        <!-- TODO can be a regular converter -->
-                        <MultiBinding Converter="{StaticResource ArrayToIndex}">
-                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.client.LastUpdatedResponse"/>
-                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}" Path="DataContext.Index"/>
-                        </MultiBinding>
-                    </local:PresentationControl.Item>
-                </local:PresentationControl>
-            </Border>
 
-             <local:ExpertContent/>
-        </StackPanel>
+
+
+    <StackPanel>
+        <!--  -->
+        <Frame x:Name="_mainFrame"
+               Visibility="{Binding ShowContent, Converter={StaticResource BooleanToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}">
+            <Frame.Template>
+                <ControlTemplate TargetType="Frame">
+                    <Grid Margin="0,0,20,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=RoundedBorder}" />
+                            </Grid.OpacityMask>
+
+                            <Border 
+                            BorderThickness="0"
+                            CornerRadius="24,24,0,24"
+                            x:Name="RoundedBorder"
+                            Background="{Binding Content.Background, ElementName=_mainFrame}"/>
+
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Grid>
+                        
+                        <Path Grid.Row="1" 
+                          Stroke="{Binding Content.Background, ElementName=_mainFrame}"
+                          Panel.ZIndex="1"
+                          Margin="0 -1 0 0"
+                          Data="M 0,0 L 0,20 L -20,0" 
+                          StrokeThickness="0"
+                          HorizontalAlignment="Right"
+                          Fill="{Binding Content.Background, ElementName=_mainFrame}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Frame.Template>
+        </Frame>
+
 
         <Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
                Width="50" Height="50" HorizontalAlignment="Right"

@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WindowsApplication.Command;
+using WindowsApplication.Utilities;
 using WindowsApplication.ViewModules;
 
 namespace WindowsApplication
@@ -30,7 +30,7 @@ namespace WindowsApplication
          * Size
          * Item
          * IncreaseIndex
-         * DecreaseIndex
+         * StartChat
          */
 
         public int Size
@@ -64,7 +64,7 @@ namespace WindowsApplication
         }
 
         public static readonly RoutedEvent DecreaseIndexEvent = EventManager.RegisterRoutedEvent(
-            "DecreaseIndex",
+            "StartChat",
             RoutingStrategy.Bubble,
             typeof(RoutedEventHandler),
             typeof(PresentationControl)
