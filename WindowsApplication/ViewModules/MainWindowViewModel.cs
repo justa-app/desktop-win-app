@@ -15,6 +15,13 @@ namespace WindowsApplication.ViewModules
 {
     public class MainWindowViewModel : ObservableObject
     {
+        private bool _showContent;
+        public bool ShowContent
+        {
+            get { return _showContent; }
+            set { _showContent = value; OnPropertyChanged("ShowContent"); }
+        }
+
         public ApiClient client { get; set; }
         private bool _hasOutlookFocusHandler;
         public bool HasOutlookFocusHandler

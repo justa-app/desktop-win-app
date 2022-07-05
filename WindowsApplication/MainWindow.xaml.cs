@@ -44,12 +44,11 @@ namespace WindowsApplication
         public MainWindow()
         {
             InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
+
             _model = new MainWindowViewModel();
             DataContext = _model;
-            //this.SizeChanged += ChangeSideToLeft;
-            //_mainFrame.NavigationService.Navigate(new MainPage(_model));
-            _mainFrame.NavigationService.Navigate(new StartChatPage());
-
+            _mainFrame.NavigationService.Navigate(new MainPage(_model));
             // TODO improve the size Changed
             SizeChanged += MainWindow_SizeChanged;
 

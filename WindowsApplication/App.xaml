@@ -12,6 +12,11 @@
         <converters:ArrayToIndexConverter x:Key="ArrayToIndex"/>
         <converters:ArrayToLengthConverter x:Key="ArrayToLength"/>
         <converters:ResponseToAlertConverter x:Key="ReponseToAlert"/>
+        <converters:InvertedStringToVisibilityConverter x:Key="InvertedStringToVisibility"/>
 
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Roberto" />
+        </Style>
+        
     </Application.Resources>
 </Application>

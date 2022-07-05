@@ -24,5 +24,10 @@ namespace WindowsApplication.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO go to chat
+        }
     }
 }
