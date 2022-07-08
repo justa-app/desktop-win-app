@@ -1,0 +1,92 @@
+﻿<Page x:Class="WindowsApplication.Views.ChatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WindowsApplication.Views"
+	  xmlns:viewmodels="clr-namespace:WindowsApplication.ViewModules"
+	  xmlns:views="clr-namespace:WindowsApplication.Views"
+	  mc:Ignorable="d"
+	  Width="Auto"
+	  Height="Auto"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChatPage"
+	  Background="#F2F2F2">
+	<Page.Resources>
+		<!--<Style x:Key="ChatItem"
+			   TargetType="{x:Type local:ChatItemView}">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding IsOrigin}"
+							 Value="True">
+					<Setter Property="textColor"
+							Value="White" />
+					<Setter Property="backgroundColor"
+							Value="#4676EB" />
+					<Setter Property="cornerRadius"
+							Value="5,0,5,5" />
+					<Setter Property="side"
+							Value="Left" />
+				</DataTrigger>
+				<DataTrigger Binding="{Binding IsOrigin}"
+							 Value="False">
+					<Setter Property="textColor"
+							Value="Black" />
+					<Setter Property="backgroundColor"
+							Value="White" />
+					<Setter Property="cornerRadius"
+							Value="0,5,5,5" />
+					<Setter Property="side"
+							Value="Right" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>-->
+		<DataTemplate x:Key="ChatItemTemplate"
+					  DataType="{x:Type viewmodels:ChatItemViewModel}">
+			<views:ChatItemView DataContext="{Binding }" />
+			<!--
+			-->
+		</DataTemplate>
+	</Page.Resources>
+	
+	<StackPanel>
+		<DockPanel Grid.Row="0"
+				   Grid.Column="1">
+			<Image Source="pack://application:,,,/Assets/expert.png"
+				   MaxHeight="20"
+				   Grid.Column="0"
+				   Grid.Row="0"
+				   Margin="13,13,7,7"
+				   DockPanel.Dock="Left" />
+			<Label Content="Start your session"
+				   Margin="4"
+				   FontSize="24"
+				   DockPanel.Dock="Left"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"/>
+			<Image Source="pack://application:,,,/Assets/back-arrow.png"
+				   MaxHeight="20"
+				   HorizontalAlignment="Right"
+				   DockPanel.Dock="Right"
+				   Margin="3">
+				<Image.InputBindings>
+					<MouseBinding Gesture="LeftClick"
+								  Command="{x:Static NavigationCommands.BrowseBack}" />
+				</Image.InputBindings>
+			</Image>
+		</DockPanel>
+		<Label Content="{Binding Subject}" />
+		<!--<local:ChatItemView text="{Binding Subject}"
+							textColor="White"
+							backgroundColor="#4B3CA8"
+							side="Left"
+							cornerRadius="0,5,5,5"/>-->
+		<Rectangle HorizontalAlignment="Stretch"
+				   Height="10" />
+		<ItemsControl ItemsSource="{Binding Messages}"
+					  Margin="30"
+					  ItemTemplate="{StaticResource ChatItemTemplate}"
+					  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					  ScrollViewer.VerticalScrollBarVisibility="Auto"
+					  Width="450"/>
+	</StackPanel>
+</Page>

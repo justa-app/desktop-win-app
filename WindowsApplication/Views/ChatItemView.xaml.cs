@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WindowsApplication.ViewModules;
 
 namespace WindowsApplication.Views
 {
     /// <summary>
-    /// Interaction logic for StartChatPage.xaml
+    /// Interaction logic for ChatItem.xaml
     /// </summary>
-    public partial class StartChatPage : Page
+    public partial class ChatItemView : UserControl
     {
-        public StartChatPage()
+        public ChatItemView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new ChatPage() { DataContext=new ChatViewModel(this.txtUserEntry.Text)});
         }
     }
 }

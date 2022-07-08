@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,18 +18,13 @@ using WindowsApplication.ViewModules;
 namespace WindowsApplication.Views
 {
     /// <summary>
-    /// Interaction logic for StartChatPage.xaml
+    /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class StartChatPage : Page
+    public partial class ChatPage : Page
     {
-        public StartChatPage()
+        public ChatPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new ChatPage() { DataContext=new ChatViewModel(this.txtUserEntry.Text)});
         }
     }
 }

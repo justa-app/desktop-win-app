@@ -17,6 +17,16 @@
         <Label Content="Hello" Foreground="Yellow"/>    
     </StackPanel>-->
 	<Page.Resources>
+		<Style x:Key="ClickableElement"
+			   TargetType="Image">
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver"
+						 Value="True">
+					<Setter Property="Cursor"
+							Value="Hand" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 		<Style x:Key="headers"
 			   TargetType="{x:Type Label}">
 			<Setter Property="Foreground"
@@ -30,7 +40,7 @@
 				   MaxHeight="20"
 				   Grid.Column="0"
 				   Grid.Row="0"
-				   Margin="7"
+				   Margin="13,13,7,7"
 				   DockPanel.Dock="Left" />
 			<Label Content="Start your session"
 				   Margin="4"
@@ -39,17 +49,19 @@
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
 				   Style="{StaticResource headers}" />
-			<Button Command="{x:Static NavigationCommands.BrowseBack}">
-				<Button.Template>
-					<ControlTemplate>
-						<Image Source="pack://application:,,,/Assets/back-arrow.png"
-							   MaxHeight="20"
-							   HorizontalAlignment="Right"
-							   DockPanel.Dock="Right"
-							   Margin="3" />
-					</ControlTemplate>
-				</Button.Template>
-			</Button>
+			
+			<Image Source="pack://application:,,,/Assets/back-arrow.png"
+				   MaxHeight="20"
+				   HorizontalAlignment="Right"
+				   DockPanel.Dock="Right"
+				   Margin="3"
+				   Style="{StaticResource ClickableElement}">
+				
+				<Image.InputBindings>
+					<MouseBinding Gesture="LeftClick"
+								  Command="{x:Static NavigationCommands.BrowseBack}" />
+				</Image.InputBindings>
+			</Image>
 		</DockPanel>
 		<StackPanel Grid.Row="1"
 					Grid.Column="1"
@@ -77,17 +89,21 @@
 						 Name="txtUserEntry"
 						 Background="Transparent"
 						 TextWrapping="Wrap"
-						 MinLines="6"
+						 
+						 MaxLines="6"
+						 BorderThickness="0"
 						 AcceptsReturn="True"
-						 VerticalScrollBarVisibility="Hidden"
+						 VerticalScrollBarVisibility="Auto"
 						 HorizontalAlignment="Stretch"
 						 FontSize="14" />
 				<TextBlock Grid.Row="0"
+						   Background="Transparent"
 						   Margin="5,2"
 						   Text="Hi, I am looking for information on..."
 						   Foreground="#90939A"
 						   IsHitTestVisible="False"
 						   Visibility="{Binding ElementName=txtUserEntry, Path=Text, Converter={StaticResource InvertedStringToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}" />
+				
 				<Button Content="send"
 						Grid.Row="1"
 						Margin="10"
