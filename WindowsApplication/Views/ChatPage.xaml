@@ -48,22 +48,31 @@
 		</DataTemplate>
 	</Page.Resources>
 	
-	<StackPanel>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<Image Source="pack://application:,,,/Assets/person-icon-expert-purple.png"
+			   MaxHeight="20"
+			   Grid.Column="0"
+			   Grid.Row="0"
+			   Margin="25,13,7,7"/>
+		
 		<DockPanel Grid.Row="0"
 				   Grid.Column="1">
-			<Image Source="pack://application:,,,/Assets/expert.png"
-				   MaxHeight="20"
-				   Grid.Column="0"
-				   Grid.Row="0"
-				   Margin="13,13,7,7"
-				   DockPanel.Dock="Left" />
 			<Label Content="Start your session"
 				   Margin="4"
 				   FontSize="24"
 				   DockPanel.Dock="Left"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"/>
-			<Image Source="pack://application:,,,/Assets/back-arrow.png"
+			<Image Source="pack://application:,,,/Assets/back-arrow-purple.png"
 				   MaxHeight="20"
 				   HorizontalAlignment="Right"
 				   DockPanel.Dock="Right"
@@ -74,6 +83,7 @@
 				</Image.InputBindings>
 			</Image>
 		</DockPanel>
+		<StackPanel Grid.Column="1" Grid.Row="1">
 		<Label Content="{Binding Subject}" />
 		<!--<local:ChatItemView text="{Binding Subject}"
 							textColor="White"
@@ -88,5 +98,47 @@
 					  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 					  ScrollViewer.VerticalScrollBarVisibility="Auto"
 					  Width="450"/>
-	</StackPanel>
+		
+		<Grid Background="White"
+			  HorizontalAlignment="Stretch"
+			  Margin="10,10,10,10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<Grid.OpacityMask>
+				<VisualBrush Visual="{Binding ElementName=RoundedBorder}" />
+			</Grid.OpacityMask>
+			<Border BorderThickness="0"
+					CornerRadius="5"
+					x:Name="RoundedBorder"
+					Background="White" />
+			<TextBox Grid.Column="0"
+					 Name="txtUserEntry"
+					 Background="Transparent"
+					 TextWrapping="Wrap"
+					 MaxLines="1"
+					 BorderThickness="0"
+					 AcceptsReturn="True"
+					 VerticalScrollBarVisibility="Hidden"
+					 HorizontalAlignment="Stretch"
+					 FontSize="14" />
+			<TextBlock Grid.Column="0"
+					   Background="Transparent"
+					   Margin="5,2"
+					   Text="Type your message here..."
+					   Foreground="#90939A"
+					   IsHitTestVisible="False"
+					   Visibility="{Binding ElementName=txtUserEntry, Path=Text, Converter={StaticResource InvertedStringToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}" />
+			<Image Margin="2"
+				   Source="pack://application:,,,/Assets/send.png"
+				   MaxHeight="20">
+				<!--<Image.InputBindings>
+					<MouseBinding Gesture="LeftClick"
+								  Command="Send" />
+				</Image.InputBindings>-->
+			</Image>
+		</Grid>
+		</StackPanel>
+	</Grid>
 </Page>

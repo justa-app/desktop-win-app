@@ -89,7 +89,7 @@
 						 Name="txtUserEntry"
 						 Background="Transparent"
 						 TextWrapping="Wrap"
-						 
+						 MinLines="6"
 						 MaxLines="6"
 						 BorderThickness="0"
 						 AcceptsReturn="True"
