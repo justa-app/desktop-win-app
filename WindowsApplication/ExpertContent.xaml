@@ -24,20 +24,21 @@
             </Grid.RowDefinitions>
 
             <Button Click="Button_Click" Width="105"
-                        Height="50">
+                        Height="50"
+					Cursor="Hand">
                 <Button.Template>
                     <ControlTemplate>
-                        <Border
-                        CornerRadius="24"
-                        Width="105"
-                        Height="50"
-                        VerticalAlignment="Center"
-                        BorderBrush="#FF969B"
-                        BorderThickness="2"
-                        >
-                            <Label HorizontalAlignment="Center"
+						<Border CornerRadius="24"
+								Width="105"
+								Height="50"
+								Cursor="Hand"
+								VerticalAlignment="Center"
+								BorderBrush="#FF969B"
+								BorderThickness="2">
+							<Label HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Content="Start a Session!"
+								   Cursor="Hand"
                                FontFamily="Roboto"
                                FontWeight="Bold"
                                Foreground="White"

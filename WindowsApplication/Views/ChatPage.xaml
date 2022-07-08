@@ -40,6 +40,10 @@
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>-->
+		<Style x:Key="mess" TargetType="ContentPresenter">
+			<Setter Property="Margin"
+					Value="0,10,0,10" />
+		</Style>
 		<DataTemplate x:Key="ChatItemTemplate"
 					  DataType="{x:Type viewmodels:ChatItemViewModel}">
 			<views:ChatItemView DataContext="{Binding }" />
@@ -62,17 +66,21 @@
 			   MaxHeight="20"
 			   Grid.Column="0"
 			   Grid.Row="0"
-			   Margin="25,13,7,7"/>
+			   VerticalAlignment="Center"
+			   Margin="25,7,7,7"/>
 		
 		<DockPanel Grid.Row="0"
-				   Grid.Column="1">
+				   Grid.Column="1"
+				   Margin="0,15,0,0">
 			<Label Content="Start your session"
-				   Margin="4"
+				   Margin="10,0,0,20"
+				VerticalAlignment="Center"
 				   FontSize="24"
 				   DockPanel.Dock="Left"
 				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"/>
+				   />
 			<Image Source="pack://application:,,,/Assets/back-arrow-purple.png"
+				   VerticalAlignment="Center"
 				   MaxHeight="20"
 				   HorizontalAlignment="Right"
 				   DockPanel.Dock="Right"
@@ -83,8 +91,29 @@
 				</Image.InputBindings>
 			</Image>
 		</DockPanel>
-		<StackPanel Grid.Column="1" Grid.Row="1">
-		<Label Content="{Binding Subject}" />
+		<StackPanel Grid.Column="1"
+					Grid.Row="1">
+			<Grid MaxWidth="150" HorizontalAlignment="Left"
+				  Margin="30,0,30,0">
+				<Grid.OpacityMask>
+					<VisualBrush Visual="{Binding ElementName=RoundedBorder2}" />
+				</Grid.OpacityMask>
+				<Border BorderThickness="0"
+						x:Name="RoundedBorder2"
+						Background="#4B3CA8"
+						CornerRadius="5"/>
+				<TextBlock Name="MessageText"
+						   Text="{Binding Subject}"
+						   TextAlignment="Center"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Background="Transparent"
+						   TextWrapping="Wrap"
+						   MaxWidth="150"
+						   Margin="15,8,15,8"
+						   Foreground="White"
+						   FontSize="14" />
+			</Grid>
 		<!--<local:ChatItemView text="{Binding Subject}"
 							textColor="White"
 							backgroundColor="#4B3CA8"
@@ -93,14 +122,19 @@
 		<Rectangle HorizontalAlignment="Stretch"
 				   Height="10" />
 		<ItemsControl ItemsSource="{Binding Messages}"
-					  Margin="30"
+					  Margin="30,0,30,0"
 					  ItemTemplate="{StaticResource ChatItemTemplate}"
 					  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 					  ScrollViewer.VerticalScrollBarVisibility="Auto"
-					  Width="450"/>
+						  ItemContainerStyle="{StaticResource mess}"
+					  MaxWidth="450"
+					  Height="300"
+					  MaxHeight="300"/>
 		
 		<Grid Background="White"
-			  HorizontalAlignment="Stretch"
+				  MaxWidth="450"
+			  Width="450"
+				  HorizontalAlignment="Stretch"
 			  Margin="10,10,10,10">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
@@ -114,13 +148,15 @@
 					x:Name="RoundedBorder"
 					Background="White" />
 			<TextBox Grid.Column="0"
-					 Name="txtUserEntry"
+						 Name="txtUserEntry"
 					 Background="Transparent"
 					 TextWrapping="Wrap"
-					 MaxLines="1"
+					 MinLines="1"
+					 MaxLines="2"
+					 HorizontalScrollBarVisibility="Auto"
 					 BorderThickness="0"
 					 AcceptsReturn="True"
-					 VerticalScrollBarVisibility="Hidden"
+					 VerticalScrollBarVisibility="Auto"
 					 HorizontalAlignment="Stretch"
 					 FontSize="14" />
 			<TextBlock Grid.Column="0"
@@ -132,7 +168,8 @@
 					   Visibility="{Binding ElementName=txtUserEntry, Path=Text, Converter={StaticResource InvertedStringToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}" />
 			<Image Margin="2"
 				   Source="pack://application:,,,/Assets/send.png"
-				   MaxHeight="20">
+				   MaxHeight="20"
+				   Grid.Column="1">
 				<!--<Image.InputBindings>
 					<MouseBinding Gesture="LeftClick"
 								  Command="Send" />

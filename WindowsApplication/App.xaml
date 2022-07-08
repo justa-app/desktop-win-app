@@ -13,7 +13,7 @@
         <converters:ArrayToLengthConverter x:Key="ArrayToLength"/>
         <converters:ResponseToAlertConverter x:Key="ReponseToAlert"/>
         <converters:InvertedStringToVisibilityConverter x:Key="InvertedStringToVisibility"/>
-		
+		<converters:BoolAndToVisibility x:Key="BoolAndVisibility" />
 		<Style TargetType="{x:Type Window}">
             <Setter Property="FontFamily" Value="Roberto" />
         </Style>

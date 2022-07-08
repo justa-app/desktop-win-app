@@ -40,31 +40,24 @@ namespace WindowsApplication
 
 
         MainWindowViewModel _model;
+        ContentWindow contentWindow;
 
         public MainWindow()
         {
             InitializeComponent();
-            Style = (Style)FindResource(typeof(Window));
 
             _model = new MainWindowViewModel();
             DataContext = _model;
-            _mainFrame.NavigationService.Navigate(new MainPage(_model));
+            contentWindow = new ContentWindow(this) { DataContext = _model };
+            contentWindow.Navigate(new MainPage(_model));
+            
             // TODO improve the size Changed
-            SizeChanged += MainWindow_SizeChanged;
-
             Top = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Bottom - 200;
             Left = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Right - 200;
-            
 
             new Thread(_model.registerFocusChangeHandler).Start();
-            
         }
 
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Left -= (e.NewSize.Width - e.PreviousSize.Width);
-            Top -= (e.NewSize.Height - e.PreviousSize.Height);
-        }
 
         private void HideWindowFromAltTab()
         {

@@ -25,6 +25,8 @@ namespace WindowsApplication
                 Visible = true
             };
 
+            // TODO the correct thing to do is having 2 windows that follow each other
+
             MainWindow window = new MainWindow();
             window.Visibility = Visibility.Hidden;
             window.Show();

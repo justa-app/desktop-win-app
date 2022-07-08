@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsApplication"
+		xmlns:vm="clr-namespace:WindowsApplication.ViewModules"
         mc:Ignorable="d"
         Title="MainWindow"
-        Topmost="True"
-        Focusable="True"
+        
+		Topmost="True"
+        Focusable="False"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
@@ -17,55 +19,14 @@
         Loaded="Window_Loaded"
         Name="Main"
         Closing="Window_Closing">
-
-    <Window.Visibility>
-        <Binding Path="HasOutlookFocusHandler" Converter="{StaticResource BooleanToVisibility}" ConverterParameter="{x:Static Visibility.Collapsed}" Mode="TwoWay"/>
-    </Window.Visibility>
-
-
-
-
-    <StackPanel>
-        <!--  -->
-        <Frame x:Name="_mainFrame"
-               Visibility="{Binding ShowContent, Converter={StaticResource BooleanToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}">
-            <Frame.Template>
-                <ControlTemplate TargetType="Frame">
-                    <Grid Margin="0,0,20,5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=RoundedBorder}" />
-                            </Grid.OpacityMask>
-
-                            <Border 
-                            BorderThickness="0"
-                            CornerRadius="24,24,0,24"
-                            x:Name="RoundedBorder"
-                            Background="{Binding Content.Background, ElementName=_mainFrame}"/>
-
-                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        </Grid>
-                        
-                        <Path Grid.Row="1" 
-                          Stroke="{Binding Content.Background, ElementName=_mainFrame}"
-                          Panel.ZIndex="1"
-                          Margin="0 -1 0 0"
-                          Data="M 0,0 L 0,20 L -20,0" 
-                          StrokeThickness="0"
-                          HorizontalAlignment="Right"
-                          Fill="{Binding Content.Background, ElementName=_mainFrame}"/>
-                    </Grid>
-                </ControlTemplate>
-            </Frame.Template>
-        </Frame>
-
-
-        <Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
+	<Window.Visibility>
+		<Binding Path="HasOutlookFocusHandler"
+				 Converter="{StaticResource BooleanToVisibility}"
+				 ConverterParameter="{x:Static Visibility.Collapsed}"
+				 Mode="TwoWay" />
+	</Window.Visibility>
+	
+	<Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
                Width="50" Height="50" HorizontalAlignment="Right"
                PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
                 PreviewMouseMove="Icon_MouseMove"
@@ -73,5 +34,4 @@
                x:Name="img"
                >
         </Image>
-    </StackPanel>
 </Window>

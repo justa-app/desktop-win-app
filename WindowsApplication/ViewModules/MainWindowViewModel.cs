@@ -73,6 +73,7 @@ namespace WindowsApplication.ViewModules
 
         public MainWindowViewModel()
         {
+            ShowContent = false;
             this.client = new ApiClient();
             this._textAction = client.Update;
             OutlookFocusHandler = null;
