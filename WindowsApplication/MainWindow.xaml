@@ -25,13 +25,13 @@
 				 ConverterParameter="{x:Static Visibility.Collapsed}"
 				 Mode="TwoWay" />
 	</Window.Visibility>
-	
 	<Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
-               Width="50" Height="50" HorizontalAlignment="Right"
-               PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
-                PreviewMouseMove="Icon_MouseMove"
-                PreviewMouseLeftButtonUp="Icon_MouseLeftButtonUp"
-               x:Name="img"
-               >
-        </Image>
+		   Width="50"
+		   Height="50"
+		   HorizontalAlignment="Right"
+		   PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
+		   PreviewMouseMove="Icon_MouseMove"
+		   PreviewMouseLeftButtonUp="Icon_MouseLeftButtonUp"
+		   x:Name="img"
+		   Style="{StaticResource ClickableElement}" />
 </Window>

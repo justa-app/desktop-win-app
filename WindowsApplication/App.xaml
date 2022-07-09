@@ -17,6 +17,15 @@
 		<Style TargetType="{x:Type Window}">
             <Setter Property="FontFamily" Value="Roberto" />
         </Style>
-        
-    </Application.Resources>
+		<Style x:Key="ClickableElement"
+			   TargetType="FrameworkElement">
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver"
+						 Value="True">
+					<Setter Property="Cursor"
+							Value="Hand" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+	</Application.Resources>
 </Application>
