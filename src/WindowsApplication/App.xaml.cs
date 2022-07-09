@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Windows.Automation;
 using WindowsApplication.AutomationHandlers;
 using System.Threading;
+using WindowsApplication.Services;
 
 namespace WindowsApplication
 {
@@ -13,6 +14,7 @@ namespace WindowsApplication
     /// </summary>
     public partial class App : System.Windows.Application
     {
+        public static MyServiceProvider ServiceProvider { get; } = new();
         private NotifyIcon? trayIcon;
 
         void Application_Startup(object sender, StartupEventArgs e)
