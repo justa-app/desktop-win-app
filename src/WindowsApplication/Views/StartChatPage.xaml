@@ -93,7 +93,6 @@
 						   Foreground="#90939A"
 						   IsHitTestVisible="False"
 						   Visibility="{Binding ElementName=txtUserEntry, Path=Text, Converter={StaticResource InvertedStringToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}" />
-				
 				<Button Content="send"
 						Grid.Row="1"
 						Margin="10"

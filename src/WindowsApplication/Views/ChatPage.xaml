@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:WindowsApplication.Views"
 	  xmlns:viewmodels="clr-namespace:WindowsApplication.ViewModules"
 	  xmlns:views="clr-namespace:WindowsApplication.Views"
+	  xmlns:commands="clr-namespace:WindowsApplication.Commands"
 	  mc:Ignorable="d"
 	  Width="Auto"
 	  Height="Auto"
@@ -44,11 +45,21 @@
 			<Setter Property="Margin"
 					Value="0,10,0,10" />
 		</Style>
+		<Style x:Key="ScrollableItems"
+			   TargetType="ItemsControl">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<ScrollViewer VerticalScrollBarVisibility="Auto">
+							<ItemsPresenter />
+						</ScrollViewer>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 		<DataTemplate x:Key="ChatItemTemplate"
 					  DataType="{x:Type viewmodels:ChatItemViewModel}">
 			<views:ChatItemView DataContext="{Binding }" />
-			<!--
-			-->
 		</DataTemplate>
 	</Page.Resources>
 	
@@ -114,24 +125,16 @@
 						   Foreground="White"
 						   FontSize="14" />
 			</Grid>
-		<!--<local:ChatItemView text="{Binding Subject}"
-							textColor="White"
-							backgroundColor="#4B3CA8"
-							side="Left"
-							cornerRadius="0,5,5,5"/>-->
-		<Rectangle HorizontalAlignment="Stretch"
-				   Height="10" />
-		<ItemsControl ItemsSource="{Binding Messages}"
-					  Margin="30,0,30,0"
-					  ItemTemplate="{StaticResource ChatItemTemplate}"
-					  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-					  ScrollViewer.VerticalScrollBarVisibility="Auto"
+			<Rectangle HorizontalAlignment="Stretch"
+					   Height="10" />
+			<ItemsControl ItemsSource="{Binding Messages}"
+						  ItemTemplate="{StaticResource ChatItemTemplate}"
 						  ItemContainerStyle="{StaticResource mess}"
-					  MaxWidth="450"
-					  Height="300"
-					  MaxHeight="300"/>
-		
-		<Grid Background="White"
+						  Margin="30,0,30,0"
+						  MaxWidth="450"
+						  Height="300"
+						  Style="{StaticResource ScrollableItems}" />
+			<Grid Background="White"
 				  MaxWidth="450"
 			  Width="450"
 				  HorizontalAlignment="Stretch"
@@ -146,6 +149,7 @@
 			<Border BorderThickness="0"
 					CornerRadius="5"
 					x:Name="RoundedBorder"
+					IsHitTestVisible="False"
 					Background="White" />
 			<TextBox Grid.Column="0"
 						 Name="txtUserEntry"
@@ -158,6 +162,8 @@
 					 AcceptsReturn="True"
 					 VerticalScrollBarVisibility="Auto"
 					 HorizontalAlignment="Stretch"
+					 IsHitTestVisible="True"
+					 Text="{Binding newMessageText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
 					 FontSize="14" />
 			<TextBlock Grid.Column="0"
 					   Background="Transparent"
@@ -166,15 +172,15 @@
 					   Foreground="#90939A"
 					   IsHitTestVisible="False"
 					   Visibility="{Binding ElementName=txtUserEntry, Path=Text, Converter={StaticResource InvertedStringToVisibility}, ConverterParameter={x:Static Visibility.Hidden}}" />
-			<Image Margin="2"
-				   Source="pack://application:,,,/Assets/send.png"
-				   MaxHeight="20"
-				   Grid.Column="1">
-				<!--<Image.InputBindings>
-					<MouseBinding Gesture="LeftClick"
-								  Command="Send" />
-				</Image.InputBindings>-->
-			</Image>
+				<Image Margin="2"
+					   Source="pack://application:,,,/Assets/send.png"
+					   MaxHeight="20"
+					   Grid.Column="1">
+					<Image.InputBindings>
+						<MouseBinding Gesture="LeftClick"
+									  Command="{Binding SendMessage}" />
+					</Image.InputBindings>
+				</Image>
 		</Grid>
 		</StackPanel>
 	</Grid>
