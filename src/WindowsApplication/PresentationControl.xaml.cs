@@ -33,70 +33,26 @@ namespace WindowsApplication
          * StartChat
          */
 
-        public int Size
+
+
+
+
+        public object[] Items
         {
-            get { return (int)GetValue(SizeProperty); }
-            set { SetValue(SizeProperty, value); }
+            get { return (object[])GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Size.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SizeProperty =
-            DependencyProperty.Register("Size", typeof(int), typeof(PresentationControl));
-
-
-
-        public object Item
-        {
-            get { return (object)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Item.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ItemProperty =
-            DependencyProperty.Register("Item", typeof(object), typeof(PresentationControl), new PropertyMetadata(0));
-
+        // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ItemsProperty =
+            DependencyProperty.Register("Items", typeof(object[]), typeof(PresentationControl));
 
 
         public PresentationControl()
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = new PresentationViewModel(Items);
         }
 
-        public static readonly RoutedEvent DecreaseIndexEvent = EventManager.RegisterRoutedEvent(
-            "StartChat",
-            RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler),
-            typeof(PresentationControl)
-        );
-
-        public event RoutedEventHandler DecreaseIndex
-        {
-            add { AddHandler(DecreaseIndexEvent, value); }
-            remove { RemoveHandler(DecreaseIndexEvent, value); }
-        }
-
-        public static readonly RoutedEvent IncreaseIndexEvent = EventManager.RegisterRoutedEvent(
-            "IncreaseIndex",
-            RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler),
-            typeof(PresentationControl)
-        );
-
-        public event RoutedEventHandler IncreaseIndex
-        {
-            add { AddHandler(IncreaseIndexEvent, value); }
-            remove { RemoveHandler(IncreaseIndexEvent, value); }
-        }
-
-        private void IncreaseIndexClick(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(IncreaseIndexEvent));
-        }
-
-        private void DecreaseIndexClick(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(DecreaseIndexEvent));
-        }
-    }
+       
 }

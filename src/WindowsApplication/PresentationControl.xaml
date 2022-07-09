@@ -43,16 +43,16 @@
                 <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-
-            <Button MaxHeight="15" Grid.Column="0" HorizontalAlignment="Center" PreviewMouseLeftButtonUp="DecreaseIndexClick">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Image Source="pack://application:,,,/Assets/arrowhead-left.png"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <!-- TODO Relative document and Presentation control are too cupled -->
+			<Image Source="pack://application:,,,/Assets/arrowhead-left.png"
+				   MaxHeight="15"
+				   Grid.Column="0"
+				   HorizontalAlignment="Center">
+				<Image.InputBindings>
+					<MouseBinding Gesture="LeftClick"
+								  Command="{Binding DecreaseIndex}" />
+				</Image.InputBindings>
+			</Image>
+			<!-- TODO Relative document and Presentation control are too cupled -->
             <ContentControl Content="{Binding }" DataContext="{Binding Item}" Grid.Column="1" HorizontalAlignment="Left" MaxHeight="100"/>
 
 
