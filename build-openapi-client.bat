@@ -1,0 +1,1 @@
+openapi-generator-cli generate -i .\openapi_for_chat.json -g csharp-netcore --package-name WindowsApplication.Client --library httpclient
