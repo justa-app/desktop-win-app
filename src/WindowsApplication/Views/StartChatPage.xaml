@@ -12,10 +12,6 @@
 	  d:DesignHeight="450"
 	  d:DesignWidth="400"
 	  Title="StartChatPage">
-	<!--
-    <StackPanel>
-        <Label Content="Hello" Foreground="Yellow"/>    
-    </StackPanel>-->
 	<Page.Resources>
 		<Style x:Key="headers"
 			   TargetType="{x:Type Label}">
@@ -99,6 +95,11 @@
 						Background="#4676EB"
 						Foreground="white"
 						Click="Button_Click" />
+				<Grid.Effect>
+					<DropShadowEffect Color="Black"
+									  BlurRadius="16"
+									  Opacity="0.25" />
+				</Grid.Effect>
 			</Grid>
 			<Image gif:ImageBehavior.RepeatBehavior="3x"
 				   gif:ImageBehavior.AnimatedSource="pack://application:,,,/Assets/bubble-chat.gif"
