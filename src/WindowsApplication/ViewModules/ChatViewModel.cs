@@ -39,9 +39,7 @@ namespace WindowsApplication.ViewModules
 
         private void onNewMessages(object messagesTask)
         {
-            JObject a = (JObject)messagesTask;
-            
-            JArray arr = (JArray)a.GetValue("messages");
+            JArray arr = (JArray)messagesTask;
             JToken b;
             arr.ToList().ForEach(x => {
                 JObject obj = x.ToObject<JObject>();
@@ -59,7 +57,7 @@ namespace WindowsApplication.ViewModules
             OnPropertyChanged("newMessageText");
 
             object getMessages = await App.ServiceProvider.GetService<IJustaSessionService>().JustaApi.
-                ListMessagesMessageSessionIdGetAsync(ChatID, skip:Messages.Count-1);
+                ListMessagesMessageSessionIdGetAsync(ChatID, skip:Messages.Count);
             
             onNewMessages(getMessages);
             
