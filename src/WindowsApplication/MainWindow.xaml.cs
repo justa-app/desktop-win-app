@@ -52,8 +52,8 @@ namespace WindowsApplication
             contentWindow.Navigate(new MainPage(_model));
             
             // TODO improve the size Changed
-            Top = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Bottom - 200;
-            Left = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Right - 200;
+            Top = 200;
+            Left = 200;
 
             new Thread(_model.registerFocusChangeHandler).Start();
         }
