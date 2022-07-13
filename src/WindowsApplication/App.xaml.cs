@@ -6,16 +6,19 @@ using System.Windows.Automation;
 using WindowsApplication.AutomationHandlers;
 using System.Threading;
 using WindowsApplication.Services;
+using WindowsApplication.Utilities;
 
 namespace WindowsApplication
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    public partial class App : SingleRunApplication
     {
+        
         public static MyServiceProvider ServiceProvider { get; } = new();
         private NotifyIcon? trayIcon;
+
 
         void Application_Startup(object sender, StartupEventArgs e)
         {
