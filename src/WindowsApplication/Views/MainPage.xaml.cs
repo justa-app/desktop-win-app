@@ -36,6 +36,9 @@ namespace WindowsApplication.Views
             if (_model.client.LastUpdatedResponse.Length > _model.Index + 1)
             {
                 _model.Index++;
+            } else
+            {
+                _model.Index = 0;
             }
 
         }
@@ -44,6 +47,9 @@ namespace WindowsApplication.Views
             if (0 <= _model.Index - 1)
             {
                 _model.Index--;
+            } else
+            {
+                _model.Index = _model.client.LastUpdatedResponse.Length - 1;
             }
         }
 
