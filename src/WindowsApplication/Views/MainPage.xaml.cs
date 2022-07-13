@@ -49,7 +49,7 @@ namespace WindowsApplication.Views
 
         private void expert_StartChat(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new StartChatPage());
+            this.NavigationService.Navigate(App.ServiceProvider.GetService<StartChatPage>());
         }
     }
 }
