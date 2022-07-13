@@ -37,6 +37,14 @@ namespace WindowsApplication
         private ContextMenuStrip createMenu()
         {
             ContextMenuStrip Menu = new ContextMenuStrip();
+            
+            ToolStripItem settingsItem= new ToolStripMenuItem("Settings");
+            Menu.Items.Add(settingsItem);
+
+            ToolStripItem feedbackItem = new ToolStripMenuItem("Send Feedback");
+            feedbackItem.Click += new EventHandler(OpenMail);
+            Menu.Items.Add(feedbackItem);
+
             ToolStripItem exitItem = new ToolStripMenuItem("Exit Justa");
             exitItem.Click += new EventHandler(CloseApplication);
             Menu.Items.Add(exitItem);
@@ -46,6 +54,13 @@ namespace WindowsApplication
         private void CloseApplication(object? sender, EventArgs e)
         {
             this.Shutdown();
+        }
+
+        private void OpenMail(object? sender, EventArgs e)
+        {
+            System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("mailto:ask@justa.app");
+            info.UseShellExecute = true;
+            System.Diagnostics.Process.Start(info);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
