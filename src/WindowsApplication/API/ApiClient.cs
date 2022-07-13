@@ -22,7 +22,8 @@ namespace WindowsApplication.API
         {
             //get => _lastResponse;
             get => _lastResponse;
-            private set {
+            private set
+            {
                 if (_lastResponse == value) return;
                 _lastResponse = value;
                 OnPropertyChanged("LastUpdatedResponse");
@@ -41,16 +42,24 @@ namespace WindowsApplication.API
 
         public void Update(string data)
         {
+            // I do not like this implementation, but for now it would work
             DateTime CurrentUpdateTime = DateTime.Now;
-            this._checkRelevantDocuments(data).ContinueWith(r =>
+            _lastUpdateTime = CurrentUpdateTime;
+            DelayedExecutionService.DelayedExecute(() =>
             {
-                if (r.Result != null && _lastUpdateTime < CurrentUpdateTime)
+                if (CurrentUpdateTime != _lastUpdateTime)
                 {
-                    _lastUpdateTime = CurrentUpdateTime;
-                    LastUpdatedResponse = r.Result;
+                    return;
                 }
-            }
+
+                this._checkRelevantDocuments(data).ContinueWith(r =>
+                {
+                    if (r.Result != null) LastUpdatedResponse = r.Result;
+                }
             );
+
+
+            }, delay: 2);
         }
 
         private async Task<RelevantDocumentViewModel[]?> _checkRelevantDocuments(string data)
@@ -61,14 +70,15 @@ namespace WindowsApplication.API
                 HttpResponseMessage response = await client.PostAsync(
                     "https://knowledge.infra.askjusta.com/",
                     content: new StringContent(data)
-                    
+
                 );
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 RelevantDocumentViewModel[]? responseData = JsonSerializer.Deserialize<RelevantDocumentViewModel[]>(responseBody);
                 return responseData;
-            } catch (HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 Console.WriteLine("Exception happened with api request\nMessage: {0}", ex.Message);
                 return null;
