@@ -1,8 +1,9 @@
-﻿<Application
+﻿<utils:SingleRunApplication
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WindowsApplication"
-             xmlns:converters="clr-namespace:WindowsApplication.Converters"
+			 xmlns:utils="clr-namespace:WindowsApplication.Utilities"
+			 xmlns:converters="clr-namespace:WindowsApplication.Converters"
              x:Class="WindowsApplication.App"
              Startup="Application_Startup"
              Exit="Application_Exit"
@@ -28,4 +29,4 @@
 			</Style.Triggers>
 		</Style>
 	</Application.Resources>
-</Application>
+</utils:SingleRunApplication>
