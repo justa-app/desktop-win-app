@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 | [**ListExpertSessionsExpertExpertIdGet**](DefaultApi.md#listexpertsessionsexpertexpertidget) | **GET** /expert/{expert_id} | List Expert Sessions |
 | [**ListExpertSessionsExpertExpertIdSessionsGet**](DefaultApi.md#listexpertsessionsexpertexpertidsessionsget) | **GET** /expert/{expert_id}/sessions | List Expert Sessions |
 | [**ListExpertSessionsExpertExpertIdSessionsSessionIdGet**](DefaultApi.md#listexpertsessionsexpertexpertidsessionssessionidget) | **GET** /expert/{expert_id}/sessions/{session_id} | List Expert Sessions |
-| [**ListMessagesMessageSessionIdGet**](DefaultApi.md#listmessagesmessagesessionidget) | **GET** /message/{session_id} | List Messages |
+| [**ListSessionMessagesMessageGet**](DefaultApi.md#listsessionmessagesmessageget) | **GET** /message | List Session Messages |
 
 <a name="createmessagemessagepost"></a>
 # **CreateMessageMessagePost**
@@ -588,11 +588,11 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listmessagesmessagesessionidget"></a>
-# **ListMessagesMessageSessionIdGet**
-> Object ListMessagesMessageSessionIdGet (string sessionId, int? skip = null, int? limit = null, int? last = null)
+<a name="listsessionmessagesmessageget"></a>
+# **ListSessionMessagesMessageGet**
+> Object ListSessionMessagesMessageGet (string sessionId, int? skip = null, int? limit = null)
 
-List Messages
+List Session Messages
 
 ### Example
 ```csharp
@@ -605,7 +605,7 @@ using WindowsApplication.Client.Model;
 
 namespace Example
 {
-    public class ListMessagesMessageSessionIdGetExample
+    public class ListSessionMessagesMessageGetExample
     {
         public static void Main()
         {
@@ -618,17 +618,16 @@ namespace Example
             var sessionId = "sessionId_example";  // string | 
             var skip = 0;  // int? |  (optional)  (default to 0)
             var limit = 10;  // int? |  (optional)  (default to 10)
-            var last = 100;  // int? |  (optional)  (default to 100)
 
             try
             {
-                // List Messages
-                Object result = apiInstance.ListMessagesMessageSessionIdGet(sessionId, skip, limit, last);
+                // List Session Messages
+                Object result = apiInstance.ListSessionMessagesMessageGet(sessionId, skip, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListMessagesMessageSessionIdGet: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListSessionMessagesMessageGet: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -637,21 +636,21 @@ namespace Example
 }
 ```
 
-#### Using the ListMessagesMessageSessionIdGetWithHttpInfo variant
+#### Using the ListSessionMessagesMessageGetWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // List Messages
-    ApiResponse<Object> response = apiInstance.ListMessagesMessageSessionIdGetWithHttpInfo(sessionId, skip, limit, last);
+    // List Session Messages
+    ApiResponse<Object> response = apiInstance.ListSessionMessagesMessageGetWithHttpInfo(sessionId, skip, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling DefaultApi.ListMessagesMessageSessionIdGetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling DefaultApi.ListSessionMessagesMessageGetWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -664,7 +663,6 @@ catch (ApiException e)
 | **sessionId** | **string** |  |  |
 | **skip** | **int?** |  | [optional] [default to 0] |
 | **limit** | **int?** |  | [optional] [default to 10] |
-| **last** | **int?** |  | [optional] [default to 100] |
 
 ### Return type
 
