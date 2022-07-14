@@ -10,12 +10,12 @@
 		<Style x:Key="MessageText" TargetType="{x:Type TextBlock}">
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="False">
+							 Value="True">
 					<Setter Property="Foreground"
 							Value="Black" />
 				</DataTrigger>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="True">
+							 Value="False">
 					<Setter Property="Foreground"
 							Value="White" />
 				</DataTrigger>
@@ -25,30 +25,30 @@
 			   TargetType="{x:Type Border}">
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="False">
+							 Value="True">
 					<Setter Property="Background"
 							Value="White" />
 					<Setter Property="CornerRadius"
-							Value="0,5,5,5" />
+							Value="5,0,5,5" />
 				</DataTrigger>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="True">
+							 Value="False">
 					<Setter Property="Background"
 							Value="#4676EB" />
 					<Setter Property="CornerRadius"
-							Value="5,0,5,5" />
+							Value="0,5,5,5" />
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
 		<Style x:Key="ChatItemGrid" TargetType="Grid">
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="True">
+							 Value="False">
 					<Setter Property="HorizontalAlignment"
 							Value="Left" />
 				</DataTrigger>
 				<DataTrigger Binding="{Binding IsOrigin}"
-							 Value="False">
+							 Value="True">
 					<Setter Property="HorizontalAlignment"
 							Value="Right" />
 				</DataTrigger>
