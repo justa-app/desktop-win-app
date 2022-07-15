@@ -18,6 +18,7 @@
 				  ShowInTaskbar="False"
 				  SizeToContent="WidthAndHeight"
 				  Loaded="Window_Loaded"
+				  UseLayoutRounding="True"
 				  ShowsNavigationUI="False">
 	<NavigationWindow.Visibility>
 		<MultiBinding Converter="{StaticResource BoolAndVisibility}" ConverterParameter="{x:Static Visibility.Hidden}">
