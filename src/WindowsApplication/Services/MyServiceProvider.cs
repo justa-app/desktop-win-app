@@ -1,5 +1,6 @@
 ﻿using Jab;
 using WindowsApplication.Interfaces;
+using WindowsApplication.Pages;
 using WindowsApplication.Views;
 
 namespace WindowsApplication.Services
