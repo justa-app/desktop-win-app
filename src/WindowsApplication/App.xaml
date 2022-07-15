@@ -28,5 +28,10 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+		<FontFamily x:Key="Roberto">pack://application:,,,/Fonts/#Roberto</FontFamily>
+		<Style TargetType="{x:Type TextBlock}">
+			<Setter Property="FontFamily"
+					Value="{StaticResource Roberto}" />
+		</Style>
 	</Application.Resources>
 </utils:SingleRunApplication>

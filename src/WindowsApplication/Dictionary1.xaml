@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif">
+	<ControlTemplate x:Key="JustaWakeIconCanvas"
+					 TargetType="Control">
+		<Canvas Height="48"
+				Width="47"
+				Background="Transparent">
+			<Path Data="M46.9135 47.0095C46.9135 47.0383 46.8559 47.0961 46.8272 47.0961C45.0726 46.4036 42.5989 44.1531 40.7868 43.9223C38.7158 43.6627 37.0475 44.7879 34.7464 45.3649C31.381 46.2016 28.3896 47.0961 24.9379 47.3846C14.6118 48.2501 5.23476 41.8161 1.46671 32.1218C-3.42313 19.6577 4.37185 3.29863 19.9331 0.7885C32.3302 -1.20229 44.2672 7.25136 46.5108 19.6866C46.8272 21.5043 46.8559 23.3797 46.9998 25.255C47.0573 25.9763 46.9135 40.5466 46.9135 47.0095Z">
+				<Path.Fill>
+					<LinearGradientBrush MappingMode="Absolute"
+										 StartPoint="47.0133,25.5548"
+										 EndPoint="0.0156242,25.5548">
+						<GradientStop Color="#2955C1" />
+						<GradientStop Color="#4B3CA8"
+									  Offset="0.905598" />
+					</LinearGradientBrush>
+				</Path.Fill>
+			</Path>
+			<Path Data="M23.5289 38.4692C31.4718 38.4692 37.9107 32.0105 37.9107 24.0432C37.9107 16.0759 31.4718 9.61719 23.5289 9.61719C15.586 9.61719 9.14697 16.0759 9.14697 24.0432C9.14697 32.0105 15.586 38.4692 23.5289 38.4692Z">
+				<Path.Fill>
+					<LinearGradientBrush MappingMode="Absolute"
+										 StartPoint="37.9107,25.0106"
+										 EndPoint="9.14697,25.0106">
+						<GradientStop Color="#2955C1" />
+						<GradientStop Color="#4B3CA8"
+									  Offset="0.905598" />
+					</LinearGradientBrush>
+				</Path.Fill>
+			</Path>
+			<Path Fill="#FFFFFF"
+				  Data="M18.5 8.5C14.3579 8.5 11 11.8579 11 16V37H18.5V33.344H28.5V37H36V16C36 11.8579 32.6421 8.5 28.5 8.5H18.5ZM21.5 15.5C19.8431 15.5 18.5 16.8431 18.5 18.5V23.6341C18.5 25.291 19.8431 26.6341 21.5 26.6341H23.9167L28.5 29.7915V18.5C28.5 16.8431 27.1569 15.5 25.5 15.5H21.5Z" />
+		</Canvas>
+	</ControlTemplate>
+	<ControlTemplate x:Key="JustaSleepIconCanvas">
+		<!-- 250 px top bottom 325px wide-->
+		<!-- TOOD move the window -->
+		<Image gif:AnimationBehavior.SourceUri="pack://application:,,,/Assets/notify.gif"
+			   gif:AnimationBehavior.AutoStart="True"
+			   MaxHeight="100" />
+	</ControlTemplate>
+</ResourceDictionary>

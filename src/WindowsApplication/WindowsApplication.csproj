@@ -29,6 +29,18 @@
     <None Remove="Assets\person-icon-expert.png" />
     <None Remove="Assets\send.png" />
     <None Remove="Assets\SharePoint_logo.png" />
+    <None Remove="Fonts\Roberto\Roboto-Black.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-BlackItalic.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Bold.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-BoldItalic.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Italic.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Light.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-LightItalic.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Medium.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-MediumItalic.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Regular.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-Thin.ttf" />
+    <None Remove="Fonts\Roberto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,6 +100,42 @@
     </Resource>
     <Resource Include="Assets\SharePoint_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roberto\Roboto-ThinItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 
