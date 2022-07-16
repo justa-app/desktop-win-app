@@ -16,11 +16,12 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="../Themes/ChatThemes.xaml" />
+				<ResourceDictionary Source="../Themes/SystemControls.xaml" />
 				<ResourceDictionary Source="../Themes/Drawings.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Page.Resources>
-    <Grid Margin="0,30,0,0">
+	<Grid Margin="0,30,0,0">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto"/>
