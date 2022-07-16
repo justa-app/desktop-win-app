@@ -21,10 +21,12 @@
 				Value="Regular" />
 	</Style>
 	<Style x:Key="BackArrowChatStyle"
-		   TargetType="Image"
+		   TargetType="Viewbox"
 		   BasedOn="{StaticResource ClickableElement}">
 		<Setter Property="VerticalAlignment"
 				Value="Center" />
+		<Setter Property="Stretch"
+				Value="Uniform" />
 		<Setter Property="Margin"
 				Value="10,0,24,0" />
 	</Style>
