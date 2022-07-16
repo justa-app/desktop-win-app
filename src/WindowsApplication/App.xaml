@@ -5,7 +5,7 @@
 			 xmlns:utils="clr-namespace:WindowsApplication.Utilities"
 			 xmlns:converters="clr-namespace:WindowsApplication.Converters"
 			 xmlns:yesno="clr-namespace:WindowsApplication.Dialogs.YesNo"
-							x:Class="WindowsApplication.App"
+			 x:Class="WindowsApplication.App"
              Startup="Application_Startup"
              Exit="Application_Exit"
              ShutdownMode="OnLastWindowClose">

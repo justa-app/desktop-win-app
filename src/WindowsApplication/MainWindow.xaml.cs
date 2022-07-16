@@ -29,15 +29,8 @@ namespace WindowsApplication
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : InvisibleWindow
     {
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        [DllImport("user32.dll")]
-        static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-        private const int GWL_EX_STYLE = -20;
-        private const int WS_EX_APPWINDOW = 0x00040000, WS_EX_TOOLWINDOW = 0x00000080;
-
 
         MainWindowViewModel _model;
         ContentWindow contentWindow;
@@ -49,28 +42,13 @@ namespace WindowsApplication
             _model = new MainWindowViewModel();
             DataContext = _model;
             contentWindow = new ContentWindow(this) { DataContext = _model };
-            contentWindow.Navigate(new MainPage(_model));
+            contentWindow.NavFrame.Navigate(new MainPage(_model));
             
             // TODO improve the size Changed
             Top = 200;
             Left = 200;
 
             new Thread(_model.registerFocusChangeHandler).Start();
-        }
-
-
-        private void HideWindowFromAltTab()
-        {
-            //Variable to hold the handle for the form
-            var helper = new WindowInteropHelper(this).Handle;
-            // Performing windows magic to set the window as both existing style and toolwindow style
-            // tool windows are hidden from Alt+Tab
-            SetWindowLong(helper, GWL_EX_STYLE, (GetWindowLong(helper, GWL_EX_STYLE) | WS_EX_TOOLWINDOW) & ~WS_EX_APPWINDOW);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            HideWindowFromAltTab();
         }
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

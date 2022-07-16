@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WindowsApplication.Interfaces;
+using WindowsApplication.Utilities;
 
 namespace WindowsApplication.Services
 {
     /// <summary>
     /// Interaction logic for DialogWindow.xaml
     /// </summary>
-    public partial class DialogWindow : Window, IDialogWindow
+    public partial class DialogWindow : InvisibleWindow, IDialogWindow
     {
         public DialogWindow()
         {

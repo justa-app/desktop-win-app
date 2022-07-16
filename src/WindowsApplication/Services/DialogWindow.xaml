@@ -1,9 +1,10 @@
-﻿<Window x:Class="WindowsApplication.Services.DialogWindow"
+﻿<utils:InvisibleWindow x:Class="WindowsApplication.Services.DialogWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:WindowsApplication.Services"
+		xmlns:utils="clr-namespace:WindowsApplication.Utilities"
 		mc:Ignorable="d"
 		WindowStartupLocation="CenterOwner"
 		Title="{Binding Title}"
@@ -11,4 +12,4 @@
 		Width="800">
 	<ContentControl x:Name="ContentPresenter"
 					Content="{Binding}" />
-</Window>
+</utils:InvisibleWindow>
