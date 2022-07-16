@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsApplication.Interfaces;
 using WindowsApplication.Pages;
 using WindowsApplication.ViewModules;
 
@@ -56,7 +58,33 @@ namespace WindowsApplication.Views
 
         private void expert_StartChat(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(App.ServiceProvider.GetService<StartChatPage>());
+            var page = new StartChatPage();
+            page.Return += StartChatReturnSubject;
+            this.NavigationService.Navigate(page);
+        }
+
+        private async void StartChatReturnSubject(object sender, ReturnEventArgs<string> e)
+        {
+            string subject = e.Result;
+            List<string> experts = new List<string>();
+            experts.Add("alice");
+            experts.Add("bob");
+
+            var newSession = new Client.Model.Session(name: subject, initiator: "john", experts: experts);
+
+            JObject response = (JObject)await App.ServiceProvider.GetService<IJustaSessionService>().
+                JustaApi.CreateSessionSessionPostAsync(newSession);
+
+            JToken? id;
+            if (!response.TryGetValue("session_id", StringComparison.OrdinalIgnoreCase, out id))
+            {
+                MessageBox.Show("There was a problem creating the session."); // TODO more data
+                return;
+            }
+
+
+            var page = new ChatViewModel(id.ToObject<string>(), subject);
+            this.NavigationService.Navigate(new ChatPage() { DataContext = page });
         }
     }
 }

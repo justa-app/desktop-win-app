@@ -23,7 +23,7 @@ namespace WindowsApplication.Pages
     /// <summary>
     /// Interaction logic for StartChatPage.xaml
     /// </summary>
-    public partial class StartChatPage : Page
+    public partial class StartChatPage : PageFunction<String>
     {
         public ICommand StartChatCommand { get; set; }
         public StartChatPage()
@@ -35,30 +35,9 @@ namespace WindowsApplication.Pages
             this.StartChatButton.Command = StartChatCommand;
         }
 
-        private async void ChangeWindow()
+        private void ChangeWindow()
         {
-            // TODO probably send the async request while changing page
-            List<string> experts = new List<string>();
-            experts.Add("alice");
-            experts.Add("bob");
-
-            var newSession = new Client.Model.Session(name: StartChatTextBox.Text, initiator: "john", experts: experts);
-
-            JObject response = (JObject)await App.ServiceProvider.GetService<IJustaSessionService>().
-                JustaApi.CreateSessionSessionPostAsync(newSession);
-
-            JToken? id;
-            if (response.TryGetValue("session_id", StringComparison.OrdinalIgnoreCase, out id))
-            {
-                string chatId = id.ToObject<string>();
-                this.NavigationService.Navigate(new ChatPage() { DataContext = new ChatViewModel(chatId, StartChatTextBox.Text) });
-            }
-            else
-            {
-                MessageBox.Show("There was a problem creating the session."); // TODO more data
-            }
-
-
+            this.OnReturn(new ReturnEventArgs<string>(StartChatTextBox.Text));
         }
     }
 }
