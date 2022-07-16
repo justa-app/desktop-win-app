@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:WindowsApplication"
 			 xmlns:utils="clr-namespace:WindowsApplication.Utilities"
 			 xmlns:converters="clr-namespace:WindowsApplication.Converters"
-             x:Class="WindowsApplication.App"
+			 xmlns:yesno="clr-namespace:WindowsApplication.Dialogs.YesNo"
+							x:Class="WindowsApplication.App"
              Startup="Application_Startup"
              Exit="Application_Exit"
              ShutdownMode="OnLastWindowClose">
@@ -28,5 +29,8 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+		<DataTemplate DataType="{x:Type yesno:YesNoDialogViewModel}">
+			<yesno:YesNoDialogView/>
+		</DataTemplate>
 	</Application.Resources>
 </utils:SingleRunApplication>

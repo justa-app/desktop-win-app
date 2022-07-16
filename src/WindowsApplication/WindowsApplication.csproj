@@ -90,4 +90,17 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Dialogs\YesNo\YesNoDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Dialogs\YesNo\YesNoDialogView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

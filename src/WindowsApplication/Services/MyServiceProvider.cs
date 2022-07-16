@@ -7,6 +7,7 @@ namespace WindowsApplication.Services
 {
     [ServiceProvider]
     [Singleton(typeof(IJustaSessionService), typeof(JustaSessionService))]
+    [Singleton(typeof(IDialogService), typeof(DialogService))]
 
     public partial class MyServiceProvider
     {
