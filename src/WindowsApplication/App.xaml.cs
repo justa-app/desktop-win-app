@@ -7,6 +7,8 @@ using WindowsApplication.AutomationHandlers;
 using System.Threading;
 using WindowsApplication.Services;
 using WindowsApplication.Utilities;
+using WindowsApplication.Interfaces;
+using WindowsApplication.Dialogs.YesNo;
 
 namespace WindowsApplication
 {
@@ -60,7 +62,7 @@ namespace WindowsApplication
         }
 
         private void OpenMail(object? sender, EventArgs e)
-        {
+        {   
             System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("mailto:ask@justa.app");
             info.UseShellExecute = true;
             System.Diagnostics.Process.Start(info);

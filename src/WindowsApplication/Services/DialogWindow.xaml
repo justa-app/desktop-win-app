@@ -6,10 +6,11 @@
 		xmlns:local="clr-namespace:WindowsApplication.Services"
 		xmlns:utils="clr-namespace:WindowsApplication.Utilities"
 		mc:Ignorable="d"
-		WindowStartupLocation="CenterOwner"
+		WindowStartupLocation="CenterScreen"
 		Title="{Binding Title}"
 		SizeToContent="WidthAndHeight"
-					   UseLayoutRounding="True">
+		UseLayoutRounding="True"
+					   Topmost="True">
 	<ContentControl x:Name="ContentPresenter"
 					Content="{Binding}" />
 </utils:InvisibleWindow>

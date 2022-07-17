@@ -24,6 +24,14 @@ namespace WindowsApplication.Services
         public DialogWindow()
         {
             InitializeComponent();
+
+            Window origin = Window.GetWindow(this);
+            origin.IsVisibleChanged += Origin_IsVisibleChanged;
+        }
+
+        private void Origin_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            this.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

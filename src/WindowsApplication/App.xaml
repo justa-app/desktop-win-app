@@ -29,6 +29,7 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+		<ResourceDictionary x:Key="a" Source="Themes/Drawings.xaml" />
 		<DataTemplate DataType="{x:Type yesno:YesNoDialogViewModel}">
 			<yesno:YesNoDialogView/>
 		</DataTemplate>

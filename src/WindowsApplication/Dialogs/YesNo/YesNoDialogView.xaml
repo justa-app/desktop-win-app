@@ -8,7 +8,7 @@
 			 d:DesignHeight="450"
 			 d:DesignWidth="800">
 	<UserControl.Resources>
-		<ResourceDictionary Source="/Themes/Drawings.xaml" />
+		<ResourceDictionary Source="../../Themes/Drawings.xaml" />
 	</UserControl.Resources>
 	<Border CornerRadius="8"
 			Margin="{Binding BlurRadius, ElementName=WindowDropShadow}"
@@ -39,11 +39,11 @@
 			<StackPanel VerticalAlignment="Center"
 						HorizontalAlignment="Center"
 						Margin="25">
-				<TextBlock Text="Was this helpful?"
+				<TextBlock Text="{Binding Title}"
 						   Foreground="White"
 						   FontWeight="Medium"
 						   FontSize="14" />
-				<TextBlock Text="Help us improve :)"
+				<TextBlock Text="{Binding Message}"
 						   Foreground="White"
 						   FontWeight="Normal"
 						   FontSize="12"
