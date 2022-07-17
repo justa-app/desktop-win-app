@@ -25,8 +25,7 @@ namespace WindowsApplication.Services
         {
             InitializeComponent();
 
-            Window origin = Window.GetWindow(this);
-            origin.IsVisibleChanged += Origin_IsVisibleChanged;
+            App.Current.MainWindow.IsVisibleChanged += Origin_IsVisibleChanged;
         }
 
         private void Origin_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
