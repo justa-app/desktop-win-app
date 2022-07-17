@@ -89,7 +89,13 @@
 							Name="StartChatButton"
 							Style="{StaticResource StartChatButtonStyle}">
 						<StackPanel Orientation="Horizontal">
-							<Image Source="/Assets/start-arrow.png" Height="18" Stretch="Uniform" VerticalAlignment="Center" />
+							<Viewbox Height="18"
+									 Stretch="Uniform"
+									 VerticalAlignment="Center">
+								<Path Data="{Binding Path=Data, Source={StaticResource StartArrow}}"
+									  Stretch="Fill"
+									  Fill="White" />
+							</Viewbox>
 							<TextBlock Text="Start" Style="{StaticResource ChatStartButtonTextStyle}" />
 							
 						</StackPanel>
