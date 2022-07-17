@@ -24,6 +24,7 @@ namespace WindowsApplication
 
         void Application_Startup(object sender, StartupEventArgs e)
         {
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             trayIcon = new NotifyIcon()
             {
                 Icon=new Icon("Assets/JustaSleep.ico"),
@@ -37,6 +38,11 @@ namespace WindowsApplication
             MainWindow window = new MainWindow();
             window.Visibility = Visibility.Hidden;
             window.Show();
+        }
+
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            System.Windows.MessageBox.Show(e.Exception.ToString(), "A critical exception occured");
         }
 
         private ContextMenuStrip createMenu()
