@@ -27,7 +27,6 @@
     <None Remove="Assets\person-icon-expert.png" />
     <None Remove="Assets\send.png" />
     <None Remove="Assets\SharePoint_logo.png" />
-    <None Remove="Assets\start-arrow.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,9 +64,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Assets\JustaSleep.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\start-arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <PackageReference Include="Jab" Version="0.8.2" />
