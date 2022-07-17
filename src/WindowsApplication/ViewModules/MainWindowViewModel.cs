@@ -41,7 +41,14 @@ namespace WindowsApplication.ViewModules
             set
             {
                 this._index = value;
-                OnPropertyChanged("Index");
+                if (_index < this.client.LastUpdatedResponse.Length && _index >= 0)
+                {
+                    OnPropertyChanged("Index");
+                }
+                else
+                {
+                    _index = 0;
+                }
             }
         }
 
