@@ -1,5 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:converters="clr-namespace:WindowsApplication.Converters">
 	<SolidColorBrush x:Key="ControlsColor"
 					 Color="Black" />
+	<converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+	<converters:ArrayToIndexConverter x:Key="ArrayToIndex" />
+	<converters:ArrayToLengthConverter x:Key="ArrayToLength" />
+	<converters:ResponseToAlertConverter x:Key="ReponseToAlert" />
+	<converters:InvertedStringToVisibilityConverter x:Key="InvertedStringToVisibility" />
+	<converters:BoolAndToVisibility x:Key="BoolAndVisibility" />
+	<converters:InputToVisibilityConverter x:Key="InputToVisibility" />
+	<converters:MaxMessageSizeConverter x:Key="MaxMessageSize" />
+	<Style TargetType="{x:Type Window}">
+		<Setter Property="FontFamily"
+				Value="Roberto" />
+	</Style>
+	<Style x:Key="ClickableElement"
+		   TargetType="FrameworkElement">
+		<Style.Triggers>
+			<Trigger Property="IsMouseOver"
+					 Value="True">
+				<Setter Property="Cursor"
+						Value="Hand" />
+			</Trigger>
+		</Style.Triggers>
+	</Style>
 </ResourceDictionary>

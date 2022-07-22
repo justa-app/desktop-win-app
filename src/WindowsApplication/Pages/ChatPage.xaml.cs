@@ -12,11 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsApplication.ViewModules;
 
 namespace WindowsApplication.Pages
 {
     /// <summary>
-    /// Interaction logic for ChatPage.xaml
+    /// Interaction logic for Chat1.xaml
     /// </summary>
     public partial class ChatPage : Page
     {
@@ -24,5 +25,7 @@ namespace WindowsApplication.Pages
         {
             InitializeComponent();
         }
+
+        
     }
 }

@@ -5,12 +5,12 @@
 		   BasedOn="{StaticResource ClickableElement}">
 		<Setter Property="VerticalAlignment"
 				Value="Center" />
+		<Setter Property="HorizontalAlignment"
+				Value="Right" />
 		<Setter Property="Stretch"
 				Value="Uniform" />
 		<Setter Property="Margin"
 				Value="10,0,24,0" />
-		<Setter Property="Fill"
-				Value="{DynamicResource ControlsColor}" />
 	</Style>
 	<Style x:Key="HeaderTextStyle"
 		   TargetType="TextBlock">
@@ -18,11 +18,21 @@
 				Value="Left" />
 		<Setter Property="VerticalAlignment"
 				Value="Center" />
-		<Setter Property="Foreground"
-				Value="{DynamicResource ControlsColor}" />
 		<Setter Property="FontSize"
 				Value="24" />
 		<Setter Property="FontWeight"
 				Value="Regular" />
+	</Style>
+	<Style x:Key="ScrollableItems"
+		   TargetType="ItemsControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<ScrollViewer VerticalScrollBarVisibility="Auto">
+						<ItemsPresenter />
+					</ScrollViewer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 </ResourceDictionary>

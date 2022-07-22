@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WindowsApplication.Views
 {
     /// <summary>
-    /// Interaction logic for ChatItem.xaml
+    /// Interaction logic for ChatHeader.xaml
     /// </summary>
-    public partial class ChatItemView : UserControl
+    public partial class SeperatorLine : UserControl
     {
-        public ChatItemView()
+        public SeperatorLine()
         {
             InitializeComponent();
         }

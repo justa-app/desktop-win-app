@@ -3,30 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WindowsApplication"
 			 xmlns:utils="clr-namespace:WindowsApplication.Utilities"
-			 xmlns:converters="clr-namespace:WindowsApplication.Converters"
              x:Class="WindowsApplication.App"
              Startup="Application_Startup"
              Exit="Application_Exit"
              ShutdownMode="OnLastWindowClose">
-    <Application.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-        <converters:ArrayToIndexConverter x:Key="ArrayToIndex"/>
-        <converters:ArrayToLengthConverter x:Key="ArrayToLength"/>
-        <converters:ResponseToAlertConverter x:Key="ReponseToAlert"/>
-        <converters:InvertedStringToVisibilityConverter x:Key="InvertedStringToVisibility"/>
-		<converters:BoolAndToVisibility x:Key="BoolAndVisibility" />
-		<Style TargetType="{x:Type Window}">
-            <Setter Property="FontFamily" Value="Roberto" />
-        </Style>
-		<Style x:Key="ClickableElement"
-			   TargetType="FrameworkElement">
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver"
-						 Value="True">
-					<Setter Property="Cursor"
-							Value="Hand" />
-				</Trigger>
-			</Style.Triggers>
-		</Style>
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Themes/General.xaml" />
+				<ResourceDictionary Source="Themes/Drawings.xaml" />
+				<ResourceDictionary Source="Themes/SystemControls.xaml" />
+				<ResourceDictionary Source="Themes/ChatThemes.xaml" />
+				<ResourceDictionary Source="Themes/ChatPageThemes.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</Application.Resources>
 </utils:SingleRunApplication>

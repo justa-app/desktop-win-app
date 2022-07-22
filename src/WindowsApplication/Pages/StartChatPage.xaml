@@ -6,113 +6,83 @@
       xmlns:local="clr-namespace:WindowsApplication.Pages"
       xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
       xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+	  xmlns:views="clr-namespace:WindowsApplication.Views"
       x:TypeArguments="sys:String"
       mc:Ignorable="d"
 			  d:DesignHeight="450" d:DesignWidth="800"
 	  Background="#4676EB"
 	  TextOptions.TextFormattingMode="Display"
+			  Grid.IsSharedSizeScope="True"
       Title="StartChatPage">
 	<Page.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../Themes/ChatThemes.xaml" />
-				<ResourceDictionary Source="../Themes/SystemControls.xaml" />
-				<ResourceDictionary Source="../Themes/Drawings.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
+		<SolidColorBrush x:Key="ControlsColor"
+						 Color="White" />
 	</Page.Resources>
-	<Grid Margin="0,30,0,0">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="Auto"/>
-		</Grid.ColumnDefinitions>
-		
-		<!-- Header -->
-		<Image Source="../Assets/person-icon-expert.png"
-			   Stretch="Uniform"
-			   Style="{StaticResource ChatHeaderIconStyle}"
-			   Grid.Row="0"
-			   Grid.Column="0" />
-		<TextBlock Text="Start Your Session!"
-				   Style="{StaticResource ChatHeaderTextStyle}"
-				   Grid.Row="0"
-				   Grid.Column="1" />
-
-		<Viewbox Grid.Row="0"
-				 Grid.Column="2"
-				 Style="{StaticResource BackArrowChatStyle}">
-			<Viewbox.InputBindings>
-				<MouseBinding Gesture="LeftClick"
-							  Command="{x:Static NavigationCommands.BrowseBack}" />
-			</Viewbox.InputBindings>
-			<Path Data="{Binding Path=Data, Source={StaticResource BackArrow}}"
-				  Stretch="Fill"
-				  Fill="White"/>
-		</Viewbox>
-		<!-- Page Content -->
-		<Rectangle Fill="White"
-				   Width="Auto"
-				   Height="3"
-				   Margin="0,12,0,0"
-				   Grid.Row="1"
-				   Grid.Column="1"
-				   Grid.ColumnSpan="2" />
-		<DockPanel Grid.Row="2"
-				   Grid.Column="1"
-				   LastChildFill="False">
-			
-			<TextBlock Text="Please type your question!"
-					   Style="{StaticResource ChatStartRequestTextStyle}"
-					   DockPanel.Dock="Top"/>
-			<Border DockPanel.Dock="Top"
-					Style="{StaticResource StartChatInputBorder}">
-				
+	<StackPanel>
+		<views:NavigationHeader />
+		<Grid Margin="0,20,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition SharedSizeGroup="Left" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition SharedSizeGroup="Right" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<views:SeperatorLine Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+			<DockPanel Grid.Row="1"
+					   Grid.Column="1"
+					   LastChildFill="False">
+				<TextBlock Text="Please type your question!"
+						   Style="{StaticResource ChatStartRequestTextStyle}"
+						   DockPanel.Dock="Top" />
+				<Border DockPanel.Dock="Top"
+						Style="{StaticResource StartChatInputBorder}">
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition />
 							<RowDefinition Height="5" />
 							<RowDefinition />
 						</Grid.RowDefinitions>
-					<TextBox Grid.Row="0"
-							 Name="StartChatTextBox"
-							 Style="{StaticResource StartChatTextBoxStyle}" />
-					<TextBlock Grid.Row="0"
-							   Text="Hi, I'm looking for information on..."
-							   Style="{StaticResource StartChatHintTextStyle}" />
-					<Button DockPanel.Dock="Bottom"
-							Grid.Row="3"
-							Name="StartChatButton"
-							Style="{StaticResource StartChatButtonStyle}">
-						<StackPanel Orientation="Horizontal">
-							<Viewbox Height="18"
-									 Stretch="Uniform"
-									 VerticalAlignment="Center">
-								<Path Data="{Binding Path=Data, Source={StaticResource StartArrow}}"
-									  Stretch="Fill"
-									  Fill="White" />
-							</Viewbox>
-							<TextBlock Text="Start" Style="{StaticResource ChatStartButtonTextStyle}" />
-							
-						</StackPanel>
-						
-					</Button>
-				</Grid>
-					
-			</Border>
-			<!-- NOTE the margin top must be above the drop shadow radius to cover for the fact we don't use the multiply effect here-->
-			<Image gif:AnimationBehavior.RepeatBehavior="Forever"
-				   gif:AnimationBehavior.SourceUri="/Assets/bubble-chat.gif"
-				   gif:AnimationBehavior.AutoStart="True"
-				   Margin="0,16,0,10"
-				   Height="153"
-				   Stretch="Uniform"
-				   DockPanel.Dock="Bottom"/>
-		</DockPanel>
-	</Grid>
+						<TextBox Grid.Row="0"
+								 Name="StartChatTextBox"
+								 Style="{StaticResource StartChatTextBoxStyle}" />
+						<TextBlock Grid.Row="0"
+								   Text="Hi, I'm looking for information on..."
+								   Style="{StaticResource StartChatHintTextStyle}" />
+						<Button DockPanel.Dock="Bottom"
+								Grid.Row="3"
+								Name="StartChatButton"
+								Style="{StaticResource StartChatButtonStyle}">
+							<StackPanel Orientation="Horizontal">
+								<Viewbox Height="18"
+										 Stretch="Uniform"
+										 VerticalAlignment="Center">
+									<Path Data="{Binding Path=Data, Source={StaticResource StartArrow}}"
+										  Stretch="Fill"
+										  Fill="White" />
+								</Viewbox>
+								<TextBlock Text="Start"
+										   Style="{StaticResource ChatStartButtonTextStyle}" />
+							</StackPanel>
+						</Button>
+					</Grid>
+				</Border><!-- NOTE the margin top must be above the drop shadow radius to cover for the fact we don't use the multiply effect here-->
+				<Image gif:AnimationBehavior.RepeatBehavior="Forever"
+					   gif:AnimationBehavior.SourceUri="/Assets/bubble-chat.gif"
+					   gif:AnimationBehavior.AutoStart="True"
+					   Margin="0,16,0,10"
+					   Height="153"
+					   Stretch="Uniform"
+					   DockPanel.Dock="Bottom" />
+			</DockPanel>
+		</Grid>
+	</StackPanel>
+	<!--
+	<Grid Margin="0,30,0,0">
+		
+		
+		
+	</Grid>-->
 </PageFunction>
