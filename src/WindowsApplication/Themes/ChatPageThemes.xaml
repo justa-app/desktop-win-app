@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:models="clr-namespace:WindowsApplication.ViewModules"
+					xmlns:chatviews="clr-namespace:WindowsApplication.Views.Chat">
+	<Style x:Key="ChatSendBorder"
+		   TargetType="Border">
+		<Setter Property="Padding"
+				Value="15" />
+		<Setter Property="CornerRadius"
+				Value="5" />
+		<Setter Property="Background"
+				Value="White" />
+		<Setter Property="BorderThickness"
+				Value="0" />
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect BlurRadius="8"
+								  Opacity="0.25"
+								  Color="#4873FF"
+								  ShadowDepth="2" />
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="WatermarkSendMessageBox"
+		   TargetType="TextBox">
+		<Setter Property="FontSize"
+				Value="14" />
+		<Setter Property="FontWeight"
+				Value="Regular" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="TextBox">
+					<Grid>
+						<TextBlock Background="Transparent"
+								   Text="Type your message here..."
+								   VerticalAlignment="Center"
+								   Foreground="#90939A"
+								   FontSize="{TemplateBinding FontSize}"
+								   FontWeight="{TemplateBinding FontWeight}"
+								   IsHitTestVisible="False">
+							<TextBlock.Visibility>
+								<MultiBinding Converter="{StaticResource InputToVisibility}">
+									<Binding ElementName="inputText"
+											 Path="Text" />
+									<Binding ElementName="inputText"
+											 Path="IsFocused" />
+								</MultiBinding>
+							</TextBlock.Visibility>
+						</TextBlock>
+						
+						<TextBox x:Name="inputText"
+								 VerticalAlignment="Center"
+								 BorderThickness="0"
+								 Background="Transparent"
+								 FontSize="{TemplateBinding FontSize}"
+								 FontWeight="{TemplateBinding FontWeight}"
+								 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="MessageContainerStyle">
+		<Setter Property="Control.Margin"
+				Value="0,5,0,5" />
+	</Style>
+	<DataTemplate x:Key="ChatItemTemplate"
+				  x:Shared="false"
+				  DataType="{x:Type models:ResievedMessage}">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition SharedSizeGroup="Left" />
+				<ColumnDefinition Width="*" x:Name="MiddleRow" />
+				<ColumnDefinition SharedSizeGroup="Right" />
+			</Grid.ColumnDefinitions>
+			<Label Content="{StaticResource ExpertMessageIcon}"
+				   Grid.Column="0"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center">
+				<Label.Style>
+					<Style TargetType="Label">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ExpertId}"
+										 Value="">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Label.Style>
+			</Label>
+			<chatviews:Message MessageText="{Binding Content}"
+							   Grid.Column="1"
+							   MaxWidth="260">
+				<chatviews:Message.Style>
+					<Style TargetType="chatviews:Message">
+						<Setter Property="MessageBackground"
+								Value="#4676EB" />
+						<Setter Property="TextColor"
+								Value="White" />
+						<Setter Property="Radius"
+								Value="0,5,5,5" />
+						<Setter Property="HorizontalAlignment"
+								Value="Left" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding ExpertId}"
+										 Value="">
+								<Setter Property="MessageBackground"
+										Value="White" />
+								<Setter Property="TextColor"
+										Value="#303030" />
+								<Setter Property="Radius"
+										Value="5,0,5,5" />
+								<Setter Property="HorizontalAlignment"
+										Value="Right" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</chatviews:Message.Style>
+			</chatviews:Message>
+		</Grid>
+	</DataTemplate>
+</ResourceDictionary>

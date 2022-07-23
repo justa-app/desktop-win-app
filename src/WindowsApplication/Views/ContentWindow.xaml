@@ -27,7 +27,7 @@
 		</MultiBinding>
 	</NavigationWindow.Visibility>
 	<NavigationWindow.Template>
-		<ControlTemplate TargetType="NavigationWindow">
+		<ControlTemplate TargetType="Window">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />
