@@ -7,6 +7,7 @@ using WindowsApplication.AutomationHandlers;
 using System.Threading;
 using WindowsApplication.Services;
 using WindowsApplication.Utilities;
+using WindowsApplication.Interfaces;
 
 namespace WindowsApplication
 {
@@ -51,7 +52,7 @@ namespace WindowsApplication
             Menu.Items.Add(settingsItem);
 
             ToolStripItem feedbackItem = new ToolStripMenuItem("Send Feedback");
-            feedbackItem.Click += new EventHandler(OpenMail);
+            feedbackItem.Click += new EventHandler((sender, e) => ServiceProvider.GetService<IOpenMailService>().OpenMail("ask@justa.app"));
             Menu.Items.Add(feedbackItem);
 
             ToolStripItem exitItem = new ToolStripMenuItem("Exit Justa");
@@ -63,13 +64,6 @@ namespace WindowsApplication
         private void CloseApplication(object? sender, EventArgs e)
         {
             this.Shutdown();
-        }
-
-        private void OpenMail(object? sender, EventArgs e)
-        {
-            System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("mailto:ask@justa.app");
-            info.UseShellExecute = true;
-            System.Diagnostics.Process.Start(info);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

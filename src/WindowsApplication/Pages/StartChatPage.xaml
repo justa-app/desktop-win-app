@@ -72,6 +72,8 @@
 				<Image gif:AnimationBehavior.RepeatBehavior="Forever"
 					   gif:AnimationBehavior.SourceUri="/Assets/bubble-chat.gif"
 					   gif:AnimationBehavior.AutoStart="True"
+					   RenderOptions.BitmapScalingMode="HighQuality"
+					   RenderOptions.EdgeMode="Aliased"
 					   Margin="0,16,0,10"
 					   Height="153"
 					   Stretch="Uniform"

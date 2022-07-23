@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsApplication"
 		xmlns:vm="clr-namespace:WindowsApplication.ViewModules"
+		xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         mc:Ignorable="d"
         Title="MainWindow"
-        
+		UseLayoutRounding="True"
 		Topmost="True"
         Focusable="False"
         AllowsTransparency="True"
@@ -18,20 +19,24 @@
         SizeToContent="WidthAndHeight"    
         Loaded="Window_Loaded"
         Name="Main"
-        Closing="Window_Closing">
+		MouseMove="Icon_MouseMove"
+		MouseLeftButtonDown="Icon_MouseLeftButtonDown"
+		MouseLeftButtonUp="Icon_MouseLeftButtonUp"
+		Closing="Window_Closing">
 	<Window.Visibility>
 		<Binding Path="HasOutlookFocusHandler"
 				 Converter="{StaticResource BooleanToVisibility}"
 				 ConverterParameter="{x:Static Visibility.Collapsed}"
 				 Mode="TwoWay" />
 	</Window.Visibility>
-	<Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
-		   Width="50"
-		   Height="50"
-		   HorizontalAlignment="Right"
-		   PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
-		   PreviewMouseMove="Icon_MouseMove"
-		   PreviewMouseLeftButtonUp="Icon_MouseLeftButtonUp"
+	<Image gif:AnimationBehavior.RepeatBehavior="Forever"
+		   gif:AnimationBehavior.SourceUri="/Assets/ClickJusta_Animation.gif"
+		   gif:AnimationBehavior.AutoStart="False"
+		   Height="100"
+		   SnapsToDevicePixels="True"
+		   RenderOptions.BitmapScalingMode="HighQuality"
+		   RenderOptions.EdgeMode="Aliased"
 		   x:Name="img"
-		   Style="{StaticResource ClickableElement}" />
+		   Style="{StaticResource ClickableElement}"
+		   Stretch="Uniform" />
 </Window>

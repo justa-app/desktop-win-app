@@ -54,7 +54,7 @@ namespace WindowsApplication.Views
 
         private void ContentWindowResize(object? sender, EventArgs e)
         {
-            this.Top = mainWindow.Top - this.ActualHeight;
+            this.Top = mainWindow.Top - this.ActualHeight + 10; // the 10 here is to be on top of the circle
             this.Left = mainWindow.Left - this.ActualWidth + mainWindow.ActualWidth / 2;
         }
 
