@@ -26,6 +26,7 @@
 	</Window.Visibility>
 	<Image gif:AnimationBehavior.RepeatBehavior="Forever"
 		   gif:AnimationBehavior.SourceUri="/Assets/ClickJusta_Animation.gif"
+		   gif:AnimationBehavior.AutoStart="False"
 		   Height="100"
 		   RenderOptions.BitmapScalingMode="HighQuality"
 		   RenderOptions.EdgeMode="Aliased"

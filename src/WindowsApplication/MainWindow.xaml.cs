@@ -59,14 +59,18 @@ namespace WindowsApplication
             {
                 if(_model.client.LastUpdatedResponse.Length == 0)
                 {
+                    Dispatcher.BeginInvoke(new Action(() => XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1))));
                     // stop animation when ends
-                    XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1));
                 } else if (!_model.ShowContent)
                 {
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, RepeatBehavior.Forever);
+                        XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Rewind();
+                        XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Play();
+                    }));
                     // start animation
-                    XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, RepeatBehavior.Forever);
-                    XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Rewind();
-                    XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Play();
+                    
                 }
             }
         }
@@ -76,7 +80,7 @@ namespace WindowsApplication
             if (e.PropertyName == "ShowContent" && _model.ShowContent)
             {
                 // stop animation
-                XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1));
+                Dispatcher.BeginInvoke(new Action(() => XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1))));
             }
         }
 
@@ -118,6 +122,11 @@ namespace WindowsApplication
                 // TODO this should not be here, it should be at it's own mouseup handle.
                 Image_MouseLeftButtonUp(sender, e);
             }
+        }
+
+        private void img_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
