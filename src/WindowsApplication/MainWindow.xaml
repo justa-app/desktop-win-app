@@ -12,9 +12,7 @@
 		UseLayoutRounding="True"
 		Topmost="True"
         Focusable="False"
-        WindowStyle="None"
         SizeToContent="WidthAndHeight"    
-        Loaded="Window_Loaded"
         x:Name="Main"
 		MouseMove="Icon_MouseMove"
 		MouseLeftButtonDown="Icon_MouseLeftButtonDown"
@@ -28,7 +26,6 @@
 	</Window.Visibility>
 	<Image gif:AnimationBehavior.RepeatBehavior="Forever"
 		   gif:AnimationBehavior.SourceUri="/Assets/ClickJusta_Animation.gif"
-		   gif:AnimationBehavior.AutoStart="False"
 		   Height="100"
 		   RenderOptions.BitmapScalingMode="HighQuality"
 		   RenderOptions.EdgeMode="Aliased"

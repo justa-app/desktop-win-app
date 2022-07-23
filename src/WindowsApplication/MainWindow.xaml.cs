@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -40,6 +41,8 @@ namespace WindowsApplication
 
             _model = new MainWindowViewModel();
             DataContext = _model;
+            _model.PropertyChanged += _model_PropertyChanged;
+            _model.client.PropertyChanged += Client_PropertyChanged;
             contentWindow = new ContentWindow(this) { DataContext = _model };
             contentWindow.Navigate(new MainPage(_model));
             
@@ -48,6 +51,33 @@ namespace WindowsApplication
             Left = 200;
 
             new Thread(_model.registerFocusChangeHandler).Start();
+        }
+
+        private void Client_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "LastUpdatedResponse")
+            {
+                if(_model.client.LastUpdatedResponse.Length == 0)
+                {
+                    // stop animation when ends
+                    XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1));
+                } else if (!_model.ShowContent)
+                {
+                    // start animation
+                    XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, RepeatBehavior.Forever);
+                    XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Rewind();
+                    XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Play();
+                }
+            }
+        }
+
+        private void _model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ShowContent" && _model.ShowContent)
+            {
+                // stop animation
+                XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1));
+            }
         }
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
