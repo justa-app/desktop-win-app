@@ -65,6 +65,7 @@
 				Value="0,5,0,5" />
 	</Style>
 	<DataTemplate x:Key="ChatItemTemplate"
+				  x:Shared="false"
 				  DataType="{x:Type models:ResievedMessage}">
 		<Grid>
 			<Grid.ColumnDefinitions>
@@ -79,7 +80,8 @@
 				<Label.Style>
 					<Style TargetType="Label">
 						<Style.Triggers>
-							<DataTrigger Binding="{Binding ExpertId}" Value="">
+							<DataTrigger Binding="{Binding ExpertId}"
+										 Value="">
 								<Setter Property="Visibility"
 										Value="Collapsed" />
 							</DataTrigger>
@@ -87,26 +89,30 @@
 					</Style>
 				</Label.Style>
 			</Label>
-			<chatviews:Message MessageBackground="White"
-							   TextColor="#303030"
-							   Radius="5,0,5,5"
-							   MessageText="{Binding Content}"
-							   HorizontalAlignment="Right"
+			<chatviews:Message MessageText="{Binding Content}"
 							   Grid.Column="1"
 							   MaxWidth="260">
 				<chatviews:Message.Style>
 					<Style TargetType="chatviews:Message">
+						<Setter Property="MessageBackground"
+								Value="#4676EB" />
+						<Setter Property="TextColor"
+								Value="White" />
+						<Setter Property="Radius"
+								Value="0,5,5,5" />
+						<Setter Property="HorizontalAlignment"
+								Value="Left" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding ExpertId}"
 										 Value="">
 								<Setter Property="MessageBackground"
-										Value="#4676EB" />
-								<Setter Property="TextColor"
 										Value="White" />
+								<Setter Property="TextColor"
+										Value="#303030" />
 								<Setter Property="Radius"
-										Value="0,5,5,5" />
+										Value="5,0,5,5" />
 								<Setter Property="HorizontalAlignment"
-										Value="Left" />
+										Value="Right" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
