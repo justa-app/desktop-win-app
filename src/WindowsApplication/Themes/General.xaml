@@ -10,7 +10,6 @@
 	<converters:InvertedStringToVisibilityConverter x:Key="InvertedStringToVisibility" />
 	<converters:BoolAndToVisibility x:Key="BoolAndVisibility" />
 	<converters:InputToVisibilityConverter x:Key="InputToVisibility" />
-	<converters:MaxMessageSizeConverter x:Key="MaxMessageSize" />
 	<Style TargetType="{x:Type Window}">
 		<Setter Property="FontFamily"
 				Value="Roberto" />
