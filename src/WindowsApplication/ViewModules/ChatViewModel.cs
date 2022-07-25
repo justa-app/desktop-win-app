@@ -38,6 +38,15 @@ namespace WindowsApplication.ViewModules
             ChatID = chatID;
             Subject = subject;
             MessageText = "";
+            if (Subject.Contains('?'))
+            {
+                MessageText = string.Join(Environment.NewLine,
+                    Subject.Split('?', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Select(
+                        s => s.Split('.').Last().TrimStart() + "?"));
+            } else
+            {
+                MessageText = Subject;
+            }
 
             SendMessage = new RelayCommand(sendMessageFromBox, () => MessageText != "");
             var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
