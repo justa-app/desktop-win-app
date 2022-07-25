@@ -1,37 +1,36 @@
-﻿<Window x:Class="WindowsApplication.MainWindow"
+﻿<utilities:InvisibleWindow x:Class="WindowsApplication.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsApplication"
 		xmlns:vm="clr-namespace:WindowsApplication.ViewModules"
+		xmlns:utilities="clr-namespace:WindowsApplication.Utilities"
+		xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         mc:Ignorable="d"
         Title="MainWindow"
-        
+		UseLayoutRounding="True"
 		Topmost="True"
         Focusable="False"
-        AllowsTransparency="True"
-        Background="Transparent"
-        WindowStyle="None"
-        d:Visibility="Hidden"
-        ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"    
-        Loaded="Window_Loaded"
-        Name="Main"
-        Closing="Window_Closing">
+        x:Name="Main"
+		MouseMove="Icon_MouseMove"
+		MouseLeftButtonDown="Icon_MouseLeftButtonDown"
+		MouseLeftButtonUp="Icon_MouseLeftButtonUp"
+		Closing="Window_Closing">
 	<Window.Visibility>
 		<Binding Path="HasOutlookFocusHandler"
 				 Converter="{StaticResource BooleanToVisibility}"
 				 ConverterParameter="{x:Static Visibility.Collapsed}"
 				 Mode="TwoWay" />
 	</Window.Visibility>
-	<Image Source="{Binding Path=NewData, Converter={StaticResource ReponseToAlert},Mode=OneWay}"
-		   Width="50"
-		   Height="50"
-		   HorizontalAlignment="Right"
-		   PreviewMouseLeftButtonDown="Icon_MouseLeftButtonDown"
-		   PreviewMouseMove="Icon_MouseMove"
-		   PreviewMouseLeftButtonUp="Icon_MouseLeftButtonUp"
+	<Image gif:AnimationBehavior.RepeatBehavior="Forever"
+		   gif:AnimationBehavior.SourceUri="/Assets/ClickJusta_Animation.gif"
+		   gif:AnimationBehavior.AutoStart="False"
+		   Height="100"
+		   RenderOptions.BitmapScalingMode="HighQuality"
+		   RenderOptions.EdgeMode="Aliased"
 		   x:Name="img"
-		   Style="{StaticResource ClickableElement}" />
-</Window>
+		   Style="{StaticResource ClickableElement}"
+		   Stretch="Uniform" />
+</utilities:InvisibleWindow>

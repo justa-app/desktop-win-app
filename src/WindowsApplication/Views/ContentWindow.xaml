@@ -14,7 +14,6 @@
 				  AllowsTransparency="True"
 				  Background="Transparent"
 				  WindowStyle="None"
-				  d:Visibility="Hidden"
 				  ShowInTaskbar="False"
 				  SizeToContent="WidthAndHeight"
 				  Loaded="Window_Loaded"

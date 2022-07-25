@@ -16,14 +16,13 @@
     <None Remove="Assets\arrowhead-left.png" />
     <None Remove="Assets\arrowhead-right.png" />
     <None Remove="Assets\arrowhead-thin-outline-to-the-right.png" />
-    <None Remove="Assets\back-arrow-purple.png" />
     <None Remove="Assets\bubble-chat.gif" />
+    <None Remove="Assets\ClickJusta_Animation.gif" />
     <None Remove="Assets\expert.png" />
     <None Remove="Assets\JustaFileIcon.png" />
     <None Remove="Assets\JustaNotified.png" />
     <None Remove="Assets\JustaSleep.ico" />
     <None Remove="Assets\JustaSleep.png" />
-    <None Remove="Assets\person-icon-expert-purple.png" />
     <None Remove="Assets\person-icon-expert.png" />
     <None Remove="Assets\send.png" />
     <None Remove="Assets\SharePoint_logo.png" />
@@ -51,6 +50,9 @@
     <Resource Include="Assets\bubble-chat.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\ClickJusta_Animation.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\expert.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -59,9 +61,6 @@
     </Resource>
     <Resource Include="Assets\JustaNotified.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\back-arrow-purple.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Assets\JustaSleep.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -72,9 +71,6 @@
     <ProjectReference Include="..\WindowsApplication.Client\WindowsApplication.Client.csproj" />
     <Resource Include="Assets\JustaSleep.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\person-icon-expert-purple.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\person-icon-expert.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
