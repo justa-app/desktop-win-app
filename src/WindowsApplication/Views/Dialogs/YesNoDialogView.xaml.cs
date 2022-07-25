@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WindowsApplication.Dialogs.YesNo
+namespace WindowsApplication.Views.Dialogs
 {
     /// <summary>
     /// Interaction logic for YesNoDialogView.xaml

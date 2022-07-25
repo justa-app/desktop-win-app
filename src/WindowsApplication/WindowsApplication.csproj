@@ -95,13 +95,13 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Dialogs\YesNo\YesNoDialogView.xaml.cs">
+		<Compile Update="Views\Dialogs\YesNoDialogView.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Dialogs\YesNo\YesNoDialogView.xaml">
+		<Page Update="Views\Dialogs\YesNoDialogView.xaml">
 			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 			<SubType>Designer</SubType>
 		</Page>

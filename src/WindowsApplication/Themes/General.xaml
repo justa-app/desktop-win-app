@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:converters="clr-namespace:WindowsApplication.Converters"
+					xmlns:dialogs="clr-namespace:WindowsApplication.Views.Dialogs"
 					xmlns:yesno="clr-namespace:WindowsApplication.Dialogs.YesNo">
 	<SolidColorBrush x:Key="ControlsColor"
 					 Color="Black" />
@@ -26,6 +27,6 @@
 		</Style.Triggers>
 	</Style>
 	<DataTemplate DataType="{x:Type yesno:YesNoDialogViewModel}">
-		<yesno:YesNoDialogView />
+		<dialogs:YesNoDialogView />
 	</DataTemplate>
 </ResourceDictionary>
