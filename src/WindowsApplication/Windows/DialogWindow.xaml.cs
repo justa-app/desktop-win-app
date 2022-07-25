@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using WindowsApplication.Interfaces;
 using WindowsApplication.Utilities;
 
-namespace WindowsApplication.Services
+namespace WindowsApplication.Windows
 {
     /// <summary>
     /// Interaction logic for DialogWindow.xaml
