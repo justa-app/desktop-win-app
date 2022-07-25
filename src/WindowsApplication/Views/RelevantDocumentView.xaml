@@ -11,16 +11,17 @@
     
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource ClickableElement}">
         <!-- TODO this should be a service, and not something in the datacontext -->
-        <Button Command="{Binding OpenBrowserCommand}">
+        <Button Command="{Binding OpenResultCommand}">
             <!-- Command="{Binding IncreaseIndex}-->
-            <Button.Template>
-                <ControlTemplate>
-                    <Label Content="{Binding title}" d:Content="Title" 
-                   FontFamily="Roberto"
-                   FontWeight="Medium"
-                    FontSize="16"/>
-                </ControlTemplate>
-            </Button.Template>
+			<Button.Template>
+				<ControlTemplate>
+						<Label Content="{Binding title}"
+							   d:Content="Title"
+							   FontFamily="Roberto"
+							   FontWeight="Medium"
+							   FontSize="16" />
+					</ControlTemplate>
+				</Button.Template>
         </Button>
         
         <Rectangle VerticalAlignment="Stretch" Margin="2" Stroke="#4676EB" />

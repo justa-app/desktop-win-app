@@ -94,4 +94,17 @@
     </Page>
   </ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="Views\Dialogs\YesNoDialogView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Dialogs\YesNoDialogView.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+			<SubType>Designer</SubType>
+		</Page>
+	</ItemGroup>
+
 </Project>

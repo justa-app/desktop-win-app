@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:converters="clr-namespace:WindowsApplication.Converters">
+					xmlns:converters="clr-namespace:WindowsApplication.Converters"
+					xmlns:dialogs="clr-namespace:WindowsApplication.Views.Dialogs"
+					xmlns:dialogs_viewmodels="clr-namespace:WindowsApplication.ViewModules.Dialogs">
 	<SolidColorBrush x:Key="ControlsColor"
 					 Color="Black" />
 	<converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
@@ -24,4 +26,7 @@
 			</Trigger>
 		</Style.Triggers>
 	</Style>
+	<DataTemplate DataType="{x:Type dialogs_viewmodels:YesNoDialogViewModel}">
+		<dialogs:YesNoDialogView />
+	</DataTemplate>
 </ResourceDictionary>
