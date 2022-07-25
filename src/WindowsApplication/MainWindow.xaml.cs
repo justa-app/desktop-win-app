@@ -34,6 +34,7 @@ namespace WindowsApplication
     {
         MainWindowViewModel _model;
         ContentWindow contentWindow;
+        bool continueAnimation = false;
 
         public MainWindow()
         {
@@ -45,6 +46,8 @@ namespace WindowsApplication
             _model.client.PropertyChanged += Client_PropertyChanged;
             contentWindow = new ContentWindow(this) { DataContext = _model };
             contentWindow.Navigate(new MainPage(_model));
+
+            XamlAnimatedGif.AnimationBehavior.AddAnimationCompletedHandler(img, iconAnimationCompleteHandler);
             
             // TODO improve the size Changed
             Top = 200;
@@ -59,19 +62,27 @@ namespace WindowsApplication
             {
                 if(_model.client.LastUpdatedResponse.Length == 0)
                 {
-                    Dispatcher.BeginInvoke(new Action(() => XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1))));
-                    // stop animation when ends
+                    // stop animation on next complete
+                    continueAnimation = false;
                 } else if (!_model.ShowContent)
                 {
+                    // start animation
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, RepeatBehavior.Forever);
+                        continueAnimation = true;
+                        XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1));
                         XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Rewind();
                         XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Play();
+                        
                     }));
-                    // start animation
-                    
                 }
+            }
+        }
+        private void iconAnimationCompleteHandler(DependencyObject d, XamlAnimatedGif.AnimationCompletedEventArgs e)
+        {
+            if (continueAnimation)
+            {
+                Dispatcher.BeginInvoke(new Action(() => XamlAnimatedGif.AnimationBehavior.GetAnimator(img).Play()));
             }
         }
 
@@ -79,8 +90,8 @@ namespace WindowsApplication
         {
             if (e.PropertyName == "ShowContent" && _model.ShowContent)
             {
-                // stop animation
-                Dispatcher.BeginInvoke(new Action(() => XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(img, new RepeatBehavior(1))));
+                // stop animation on next complete
+                continueAnimation = false;
             }
         }
 
@@ -122,11 +133,6 @@ namespace WindowsApplication
                 // TODO this should not be here, it should be at it's own mouseup handle.
                 Image_MouseLeftButtonUp(sender, e);
             }
-        }
-
-        private void img_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
