@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WindowsApplication.Dialogs;
 using WindowsApplication.Interfaces;
 using WindowsApplication.Services;
 using WindowsApplication.Utilities;
 
-namespace WindowsApplication.Dialogs.YesNo
+namespace WindowsApplication.ViewModules.Dialogs
 {
     public class YesNoDialogViewModel : DialogViewModelBase<DialogResults>
     {
