@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="WindowsApplication.Dialogs.YesNo.YesNoDialogView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:WindowsApplication.Dialogs.YesNo"
+			 mc:Ignorable="d"
+			 d:DesignHeight="450"
+			 d:DesignWidth="800"><UserControl.Resources>
+	<ResourceDictionary Source="../../Themes/Drawings.xaml" />
+</UserControl.Resources>
+<Border CornerRadius="8"
+		Margin="{Binding BlurRadius, ElementName=WindowDropShadow}"
+		ClipToBounds="True"
+		Background="#261977">
+	<Border.Effect>
+		<DropShadowEffect BlurRadius="24"
+						  ShadowDepth="-4"
+						  Opacity="0.55"
+						  Color="#4676EB"
+						  x:Name="WindowDropShadow" />
+	</Border.Effect>
+	<Grid>
+		<Border HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				Margin="7"
+				Height="8"
+				Cursor="Hand">
+			<Viewbox>
+				<ContentControl Content="{StaticResource xSymbol}" />
+			</Viewbox>
+			<Border.InputBindings>
+				<MouseBinding Gesture="LeftClick"
+							  Command="{Binding CloseCommand}"
+							  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+			</Border.InputBindings>
+		</Border>
+		<StackPanel VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Margin="25">
+			<TextBlock Text="{Binding Title}"
+					   Foreground="White"
+					   FontWeight="Medium"
+					   FontSize="14" />
+			<TextBlock Text="{Binding Message}"
+					   Foreground="White"
+					   FontWeight="Normal"
+					   FontSize="12"
+					   Margin="4" />
+			<StackPanel Orientation="Horizontal"
+						Margin="0,14,0,0"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+				<Viewbox Cursor="Hand">
+					<Viewbox.InputBindings>
+						<MouseBinding Gesture="LeftClick"
+									  Command="{Binding YesCommand}"
+									  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+					</Viewbox.InputBindings>
+					<Grid>
+						<Path Data="M27.4724 20.7804C27.4586 22.9417 27.4437 25.2633 27.44 26.9706C27.2249 26.8423 26.994 26.6928 26.7471 26.5331C26.6253 26.4542 26.4996 26.3729 26.37 26.2903C26.0497 26.0863 25.713 25.8809 25.3816 25.717C25.0537 25.5549 24.7018 25.4183 24.3524 25.3738L24.3514 25.3737C23.6244 25.2825 22.983 25.4384 22.3833 25.6382C22.1693 25.7095 21.9677 25.7832 21.7685 25.856C21.3833 25.9968 21.0074 26.1343 20.5695 26.2441C20.2108 26.3333 19.8616 26.4228 19.5188 26.5108C17.9188 26.9211 16.4564 27.2962 14.8057 27.4341L14.8056 27.4341C8.89543 27.9295 3.50284 24.2474 1.33051 18.6586L1.32994 18.6571C-1.47261 11.5135 3.00547 2.10872 11.9453 0.666655C19.0604 -0.475716 25.9178 4.37857 27.2069 11.5186C27.3367 12.2647 27.3811 13.0145 27.4277 13.8011C27.4468 14.1228 27.4662 14.4508 27.492 14.7871L27.4921 14.7886L27.4921 14.7887C27.4922 14.7898 27.4929 14.8007 27.4936 14.8274C27.4944 14.8531 27.4951 14.8872 27.4957 14.93C27.4969 15.0155 27.4977 15.1306 27.4982 15.2728C27.4991 15.5571 27.4986 15.9451 27.497 16.412C27.4938 17.3455 27.4863 18.5904 27.4777 19.943C27.476 20.2183 27.4742 20.498 27.4724 20.7804Z"
+							  Stroke="white"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center" />
+						<Ellipse Width="20"
+								 Height="20"
+								 Fill="White" />
+						<TextBlock Text="Yes"
+								   FontWeight="Bold"
+								   VerticalAlignment="Center"
+								   Margin="2"
+								   Foreground="#46D0A0"
+								   HorizontalAlignment="Center" />
+					</Grid>
+				</Viewbox>
+				<Viewbox Margin="25,0,0,0"
+						 Cursor="Hand">
+					<Viewbox.InputBindings>
+						<MouseBinding Gesture="LeftClick"
+									  Command="{Binding NoCommand}"
+									  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+					</Viewbox.InputBindings>
+					<Grid>
+						<Path Data="M27.4724 20.7804C27.4586 22.9417 27.4437 25.2633 27.44 26.9706C27.2249 26.8423 26.994 26.6928 26.7471 26.5331C26.6253 26.4542 26.4996 26.3729 26.37 26.2903C26.0497 26.0863 25.713 25.8809 25.3816 25.717C25.0537 25.5549 24.7018 25.4183 24.3524 25.3738L24.3514 25.3737C23.6244 25.2825 22.983 25.4384 22.3833 25.6382C22.1693 25.7095 21.9677 25.7832 21.7685 25.856C21.3833 25.9968 21.0074 26.1343 20.5695 26.2441C20.2108 26.3333 19.8616 26.4228 19.5188 26.5108C17.9188 26.9211 16.4564 27.2962 14.8057 27.4341L14.8056 27.4341C8.89543 27.9295 3.50284 24.2474 1.33051 18.6586L1.32994 18.6571C-1.47261 11.5135 3.00547 2.10872 11.9453 0.666655C19.0604 -0.475716 25.9178 4.37857 27.2069 11.5186C27.3367 12.2647 27.3811 13.0145 27.4277 13.8011C27.4468 14.1228 27.4662 14.4508 27.492 14.7871L27.4921 14.7886L27.4921 14.7887C27.4922 14.7898 27.4929 14.8007 27.4936 14.8274C27.4944 14.8531 27.4951 14.8872 27.4957 14.93C27.4969 15.0155 27.4977 15.1306 27.4982 15.2728C27.4991 15.5571 27.4986 15.9451 27.497 16.412C27.4938 17.3455 27.4863 18.5904 27.4777 19.943C27.476 20.2183 27.4742 20.498 27.4724 20.7804Z"
+							  Stroke="white"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center" />
+						<Ellipse Width="20"
+								 Height="20"
+								 Fill="White" />
+						<TextBlock Text="No"
+								   VerticalAlignment="Center"
+								   Margin="2"
+								   FontWeight="Bold"
+								   Foreground="#FF969B"
+								   HorizontalAlignment="Center" />
+					</Grid>
+				</Viewbox>
+				<!--<Button Content="hif"
+						/>-->
+				<!--<Button Content="hif"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center"
+						Margin="0,0,0,0" />-->
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Border>
+</UserControl>

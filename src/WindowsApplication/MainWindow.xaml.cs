@@ -45,7 +45,7 @@ namespace WindowsApplication
             _model.PropertyChanged += _model_PropertyChanged;
             _model.client.PropertyChanged += Client_PropertyChanged;
             contentWindow = new ContentWindow(this) { DataContext = _model };
-            contentWindow.Navigate(new MainPage(_model));
+            contentWindow.NavFrame.Navigate(new MainPage(_model));
 
             XamlAnimatedGif.AnimationBehavior.AddAnimationCompletedHandler(img, iconAnimationCompleteHandler);
             

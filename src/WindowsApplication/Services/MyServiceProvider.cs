@@ -9,6 +9,8 @@ namespace WindowsApplication.Services
     [Singleton(typeof(IJustaSessionService), typeof(JustaSessionService))]
     [Singleton(typeof(IOpenMailService), typeof(OpenMailService))]
 
+    [Singleton(typeof(IDialogService), typeof(DialogService))]
+    [Singleton(typeof(IOpenUrlService), typeof(OpenUrlService))]
     public partial class MyServiceProvider
     {
     }
