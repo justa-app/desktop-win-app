@@ -30,6 +30,16 @@ namespace WindowsApplication.Pages
         {
             InitializeComponent();
 
+            if (startingText.Contains('?'))
+            {
+                startingText = string.Join(
+                    Environment.NewLine,
+                    startingText.Split(
+                        '?',
+                        StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+                    ).Select(s => s.Split('.').Last().TrimStart() + "?")
+                );
+            }
             StartChatTextBox.Text = startingText;
             // TODO create view model
             StartChatCommand = new RelayCommand(ChangeWindow, () => StartChatTextBox.Text != "");
