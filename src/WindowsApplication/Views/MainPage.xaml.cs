@@ -58,7 +58,7 @@ namespace WindowsApplication.Views
 
         private void expert_StartChat(object sender, RoutedEventArgs e)
         {
-            var page = new StartChatPage();
+            var page = new StartChatPage(_model.OutlookFocusHandler.Text);
             page.Return += StartChatReturnSubject;
             this.NavigationService.Navigate(page);
         }

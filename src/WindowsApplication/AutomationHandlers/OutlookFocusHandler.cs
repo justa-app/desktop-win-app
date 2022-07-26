@@ -16,6 +16,7 @@ namespace WindowsApplication.AutomationHandlers
         readonly static string OUTLOOK_MESSAGE_AUTOMATION_ID = "Untitled Message";
 
         public AutomationElement sourceElement { get; private set; }
+        public string Text { get; private set; }
 
         public static bool IsFocused(AutomationElement sourceElement)
         {
@@ -62,7 +63,8 @@ namespace WindowsApplication.AutomationHandlers
             if (automationElement.TryGetCurrentPattern(TextPattern.Pattern, out pattern))
             {
                 textPattern = pattern as TextPattern;
-                textAction(textPattern.DocumentRange.GetText(1000));
+                Text = textPattern.DocumentRange.GetText(1000);
+                textAction(Text);
             }
         }
 
