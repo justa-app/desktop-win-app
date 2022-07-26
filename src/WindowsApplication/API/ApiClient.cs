@@ -59,7 +59,7 @@ namespace WindowsApplication.API
             );
 
 
-            }, delay: 2);
+            }, delay: 1);
         }
 
         private async Task<RelevantDocumentViewModel[]?> _checkRelevantDocuments(string data)
