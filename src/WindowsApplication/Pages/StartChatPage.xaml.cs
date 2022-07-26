@@ -26,10 +26,21 @@ namespace WindowsApplication.Pages
     public partial class StartChatPage : PageFunction<String>
     {
         public ICommand StartChatCommand { get; set; }
-        public StartChatPage()
+        public StartChatPage(string startingText)
         {
             InitializeComponent();
 
+            if (startingText.Contains('?'))
+            {
+                startingText = string.Join(
+                    Environment.NewLine,
+                    startingText.Split(
+                        '?',
+                        StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+                    ).Select(s => s.Split('.').Last().TrimStart() + "?")
+                );
+            }
+            StartChatTextBox.Text = startingText;
             // TODO create view model
             StartChatCommand = new RelayCommand(ChangeWindow, () => StartChatTextBox.Text != "");
             this.StartChatButton.Command = StartChatCommand;
