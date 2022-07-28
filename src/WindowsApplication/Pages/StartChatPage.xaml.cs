@@ -30,7 +30,7 @@ namespace WindowsApplication.Pages
         public StartChatPage(string startingText)
         {
             InitializeComponent();
-            this.startingText = startingText;
+            this.startingText = startingText is null? "":startingText;
             this.Loaded += StartChatPage_Loaded;
             // TODO create view model
             StartChatCommand = new RelayCommand(ChangeWindow, () => StartChatTextBox.Text != "");
